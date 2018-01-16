@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FueltypesComponent implements OnInit {
 
+  ifNameEmpty:boolean = false;
+  ifShortNameEmpty:boolean = false;
+  ifPriceEmpty:boolean = false;
+
   constructor() { }
 
   ngOnInit() {
