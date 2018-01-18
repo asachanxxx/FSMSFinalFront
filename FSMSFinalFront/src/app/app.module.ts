@@ -20,6 +20,7 @@ import { FueltypesComponent } from './masterdata/fueltypes/fueltypes.component';
 
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { GlobalConfig } from './service/globalconfig.service';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     
     
   ],
-  providers: [],
+  providers: [GlobalConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
