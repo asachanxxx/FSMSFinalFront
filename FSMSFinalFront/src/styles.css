@@ -13,3 +13,15 @@
 .sidebar .user-info .info-container {
     position: initial;
 }
+
+.card .body .col-xs-12, .card .body .col-sm-12, .card .body .col-md-12, .card .body .col-lg-12 {
+    margin-bottom: 0px;
+}
+
+.card .header {
+    padding: 13px 20px;
+}
+
+.card .header .header-dropdown {
+    top: 13px;
+}

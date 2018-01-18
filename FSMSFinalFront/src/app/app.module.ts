@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule,Routes} from '@angular/router';
 import { AppComponent } from './app.component';
@@ -17,6 +17,9 @@ import { RfcardsComponent } from './masterdata/rfcards/rfcards.component';
 import { CompanyComponent } from './masterdata/company/company.component';
 import { FueltypesComponent } from './masterdata/fueltypes/fueltypes.component';
 
+
+import {FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -39,6 +42,10 @@ import { FueltypesComponent } from './masterdata/fueltypes/fueltypes.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DataTablesModule,
+    FormsModule,
+    HttpClientModule
+    
     
   ],
   providers: [],
