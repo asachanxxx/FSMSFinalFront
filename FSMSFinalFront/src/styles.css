@@ -25,3 +25,12 @@
 .card .header .header-dropdown {
     top: 13px;
 }
+.table tr.active td {
+    background-color:#123456 !important;
+    color: white;
+  }
+
+  .table tbody tr td, .table tbody tr th {
+    padding: 8px 10px;
+    cursor: pointer;
+  }
