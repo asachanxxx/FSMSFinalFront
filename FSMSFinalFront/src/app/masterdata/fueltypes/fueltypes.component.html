@@ -28,158 +28,138 @@
 
 
 
-        <div class="row clearfix">
+      <div class="row clearfix">
 
-      <!-- Task Info -->
-      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-        <div class="card">
-          <div class="body">
-            <div class="table-responsive">
-              <table datatable  class="table table-hover dashboard-task-infos">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Fuel Name</th>
-                    <th>Fuel ShortName</th>
-                    <th>Unit Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of holdvar;  let i = index">
-                    <td>{{item.Id}}</td>
-                    <td>{{item.FuelFullName}}</td>
-                    <td>{{item.FuelShortName}}</td>
-                    <td>
+        <!-- Task Info -->
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <div class="card">
+            <div class="body">
+              <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover dashboard-task-infos">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Fuel Name</th>
+                      <th>Fuel ShortName</th>
+                      <th>Unit Price</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="holdvar">
+                    <tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
+                      <td>{{item.Id}}</td>
+                      <td>{{item.FuelFullName}}</td>
+                      <td>{{item.FuelShortName}}</td>
+                      <td>
                         <span class="label bg-green">{{item.UnitPrice}}</span>
-                    </td>
-                  </tr>
+                      </td>
+                      <td>
+                        <button (click) = "delete(item)" type="button" class="btn  btn-xs btn-default waves-effect">
+                          X
+                          <!-- <i class="material-icons">content_cut</i> -->
+                        </button>
+                      </td>
+                    </tr>
 
 
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- #END# Task Info -->
+        <!-- Browser Usage (ngSubmit)="onSubmit(content,myform,$event) -->
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="card">
+           
+            <div class="body">
+
+
+
+               
+
+
+              <form id="form_advanced_validation" [formGroup]="myform">
+
+                <input type="text" formControlName="Id"  [ngModel] = "selectedItem.Id" style="display:none">
+
+                <!-- <div class="form-group form-float">
+                  <div class="form-line">
+                    <input type="text" class="form-control"  formControlName="FuelFullName"  [ngModel] = "selectedItem.FuelFullName"  required="" aria-required="true">
+                    <label class="form-label">Fuel Name</label>
+                  </div>
+                  <label *ngIf="ifNameEmpty"  id="number-error" class="error" for="number">This field is required.</label>
+                </div> -->
+
+
+                <label for="email_address">Fuel Name</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" id="email_address" formControlName="FuelFullName"  [ngModel] = "selectedItem.FuelFullName" class="form-control" placeholder="Enter your email address">
+                    </div>
+                </div>
+
+                <label for="email_address">Fuel Short Name</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" id="email_address" formControlName="FuelShortName"  [ngModel] = "selectedItem.FuelShortName" class="form-control" placeholder="Enter your email address">
+                    </div>
+                </div>
+
+                <label for="email_address">Unit Price</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" id="email_address" formControlName="UnitPrice"  [ngModel] = "selectedItem.UnitPrice" class="form-control" placeholder="Enter your email address">
+                    </div>
+                </div>
+
+                <!-- <div class="form-group form-float">
+                  <div class="form-line">
+                    <input type="text" class="form-control" formControlName="FuelShortName"  [ngModel] = "selectedItem.FuelShortName" name="name" required="" aria-required="true">
+                    <label class="form-label">Fuel Short Name</label>
+                  </div>
+                  <label *ngIf="ifShortNameEmpty" id="number-error" class="error" for="number">This field is required.</label>
+                </div> -->
+
+                <!-- <div class="form-group form-float">
+                  <div class="form-line">
+                    <input type="number" formControlName="UnitPrice"  [ngModel] = "selectedItem.UnitPrice" class="form-control" name="number" aria-required="true">
+                    <label class="form-label">Unit Price</label>
+                  </div>
+                  <div class="help-info">Numbers only</div>
+                  <label *ngIf="ifPriceEmpty" id="number-error" class="error" for="number">This field is required.</label>
+                </div> -->
+
+                <button class="btn btn-primary waves-effect" (click) = "onSubmit(content,myform,$event,'Insert')"  type="submit" >Insert </button>
+                <button class="btn btn-primary waves-effect" (click) = "onSubmit(content,myform,$event,'Update')"  type="submit" >Update </button>
+                
+              </form>
+
             </div>
           </div>
         </div>
       </div>
-      <!-- #END# Task Info -->
-      <!-- Browser Usage -->
-
-      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <div class="card">
-    
-          <div class="body">
-            <form id="form_advanced_validation">
-
-              <div class="form-group form-float">
-                <div class="form-line">
-                  <input type="text" class="form-control" name="name" required="" aria-required="true">
-                  <label class="form-label">Fuel Name</label>
-                </div>
-                <label *ngIf="ifNameEmpty" id="number-error" class="error" for="number">This field is required.</label>
-              </div>
-
-              <div class="form-group form-float">
-                <div class="form-line">
-                  <input type="text" class="form-control" name="name" required="" aria-required="true">
-                  <label class="form-label">Fuel Short Name</label>
-                </div>
-                <label *ngIf="ifShortNameEmpty" id="number-error" class="error" for="number">This field is required.</label>
-              </div>
-
-              <div class="form-group form-float">
-                <div class="form-line">
-                  <input type="number" class="form-control" name="number" aria-required="true">
-                  <label class="form-label">Unit Price</label>
-                </div>
-                <div class="help-info">Numbers only</div>
-                <label *ngIf="ifPriceEmpty" id="number-error" class="error" for="number">This field is required.</label>
-              </div>
-
-              <button class="btn btn-primary waves-effect" type="submit">Save</button>
-            </form>
-          </div>
-        </div>
-      </div>
-        </div>
 
     </div>
   </div>
   <!-- #END# Browser Usage -->
 </div>
 
-<!--
+
 <div class="row">
-    <table datatable class="row-border hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Foo</td>
-            <td>Bar</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Someone</td>
-            <td>Youknow</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Iamout</td>
-            <td>Ofinspiration</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Yoda</td>
-            <td>Skywalker</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Patrick</td>
-            <td>Dupont</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Barack</td>
-            <td>Obama</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>François</td>
-            <td>Holland</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>Michel</td>
-            <td>Popo</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td>Chuck</td>
-            <td>Norris</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>Simon</td>
-            <td>Robin</td>
-          </tr>
-          <tr>
-            <td>11</td>
-            <td>Louis</td>
-            <td>Lin</td>
-          </tr>
-          <tr>
-            <td>12</td>
-            <td>Zelda</td>
-            <td>Link</td>
-          </tr>
-        </tbody>
-      </table>
-      
+  <div class="col-md-6">
+    <div class="well well-lg">
+      Selected Row :
+      <strong>{{selectedRow}}</strong>
+      <button (click)= "Filter()">Try Refresh</button>
+    </div>
+
+    <div class="well well-lg">
+      Selected Row :
+      <strong>{{selectedItem | json}}</strong>
+    </div>
+    
+  </div>
 </div>
--->

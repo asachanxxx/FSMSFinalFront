@@ -16,9 +16,9 @@ import { VehiclesComponent } from './masterdata/vehicles/vehicles.component';
 import { RfcardsComponent } from './masterdata/rfcards/rfcards.component';
 import { CompanyComponent } from './masterdata/company/company.component';
 import { FueltypesComponent } from './masterdata/fueltypes/fueltypes.component';
+import {GlobalConfig} from './service/globalconfig.service';
 
-
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GlobalConfig } from './service/globalconfig.service';
 
@@ -45,7 +45,8 @@ import { GlobalConfig } from './service/globalconfig.service';
     AppRoutingModule,
     DataTablesModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
     
     
   ],
