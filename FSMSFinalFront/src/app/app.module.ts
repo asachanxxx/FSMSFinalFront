@@ -20,6 +20,7 @@ import {GlobalConfig} from './service/globalconfig.service';
 
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { GlobalConfig } from './service/globalconfig.service';
 
 
 @NgModule({
