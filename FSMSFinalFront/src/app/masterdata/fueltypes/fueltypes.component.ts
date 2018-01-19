@@ -16,6 +16,14 @@ export class FueltypesComponent implements OnInit ,AfterViewInit{
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
 
+  placements: string[] = ['top', 'left', 'right', 'bottom'];
+  popoverTitle: string = 'Are you sure?';
+  popoverMessage: string = 'Are you really <b>sure</b> you want to do this?';
+  confirmText: string = 'Yes <i class="glyphicon glyphicon-ok"></i>';
+  cancelText: string = 'No <i class="glyphicon glyphicon-remove"></i>';
+  confirmClicked: boolean = false;
+  cancelClicked: boolean = false;
+
   myform: FormGroup;
   selectedItem: FuelType;
   updatingItem: FuelType;
@@ -84,8 +92,8 @@ export class FueltypesComponent implements OnInit ,AfterViewInit{
     this.selectedRow = i;
     this.selectedItem = item;
   }
-  onSubmit(content, myform, event, btn) {
-    console.log("Submitted:- content ", content)
+  onSubmit(myform, event, btn) {
+    //console.log("Submitted:- content ", content)
     console.log("Submitted:- myform ", myform.value)
     console.log("Submitted:- event ", event)
     console.log("Submitted:- event ", btn)
