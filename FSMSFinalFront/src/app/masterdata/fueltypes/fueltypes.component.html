@@ -73,14 +73,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
           <div class="card">
-           
             <div class="body">
-
-
-
-               
-
-
               <form id="form_advanced_validation" [formGroup]="myform">
 
                 <input type="text" formControlName="Id"  [ngModel] = "selectedItem.Id" style="display:none">
@@ -132,8 +125,8 @@
                   <label *ngIf="ifPriceEmpty" id="number-error" class="error" for="number">This field is required.</label>
                 </div> -->
 
-                <button class="btn btn-primary waves-effect" (click) = "onSubmit(content,myform,$event,'Insert')"  type="submit" >Insert </button>
-                <button class="btn btn-primary waves-effect" (click) = "onSubmit(content,myform,$event,'Update')"  type="submit" >Update </button>
+                <button class="btn btn-primary waves-effect" (click) = "onSubmit(myform,$event,'Insert')"  type="submit" >Insert </button>
+                <button class="btn btn-primary waves-effect" (click) = "onSubmit(myform,$event,'Update')"  type="submit" >Update </button>
                 
               </form>
 
