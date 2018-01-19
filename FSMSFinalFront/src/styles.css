@@ -14,7 +14,7 @@
     position: initial;
 }
 
-/* .card .body .col-xs-12, .card .body .col-sm-12, .card .body .col-md-12, .card .body .col-lg-12 {
+ .card .body .col-xs-12, .card .body .col-sm-12, .card .body .col-md-12, .card .body .col-lg-12 {
     margin-bottom: 0px;
 }
 
@@ -24,7 +24,6 @@
 
 .card .header .header-dropdown {
     top: 13px;
-<<<<<<< HEAD
 }
 .table tr.active td {
     background-color:#123456 !important;
@@ -35,6 +34,3 @@
     padding: 6px 10px;
     cursor: pointer;
   }
-=======
-} */
->>>>>>> 53526507306e98285b421c876c7c9e582675df50
