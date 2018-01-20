@@ -8,7 +8,8 @@ import {Observable} from 'rxjs';
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.css']
 })
-export class CompanyComponent implements OnInit {
+export class CompanyComponent implements OnInit, AfterViewInit {
+ 
 
   constructor(private httpClient:HttpClient) { }
 
@@ -80,3 +81,4 @@ class  beers {
   country: string;
   price: number;
 }
+
