@@ -1,3 +1,48 @@
-<p>
-  company works!
-</p>
+<h1>PopOver Demo</h1>
+
+<Div class="row"> 
+    <div class="col-md-5">
+
+     
+      <form #val (ngSubmit)="onSubmit($event)">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input">
+            Check me out
+          </label>
+        </div>
+
+
+        <button
+        class="btn btn-primary"
+        mwlConfirmationPopover
+        [popoverTitle]="popoverTitle"
+        [popoverMessage]="popoverMessage"
+        placement="left"
+        (confirm)="confirm('true',val)"
+        (cancel)="cancel('true')">
+        Click me!
+      </button>
+  
+      <button
+      class="btn btn-primary"
+      mwlConfirmationPopover
+      [popoverTitle]="popoverTitle"
+      [popoverMessage]="popoverMessage"
+      placement="left"
+      (confirm)="confirmClicked = true"
+      (cancel)="cancelClicked = true">
+      Click me!
+    </button>
+      </form>
+    </div>
+</Div>

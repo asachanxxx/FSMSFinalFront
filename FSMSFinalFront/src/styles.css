@@ -14,7 +14,7 @@
     position: initial;
 }
 
-/* .card .body .col-xs-12, .card .body .col-sm-12, .card .body .col-md-12, .card .body .col-lg-12 {
+.card .body .col-xs-12, .card .body .col-sm-12, .card .body .col-md-12, .card .body .col-lg-12 {
     margin-bottom: 0px;
 }
 
@@ -24,4 +24,17 @@
 
 .card .header .header-dropdown {
     top: 13px;
-} */
+
+} 
+
+
+.table tr.active td {
+    background-color:#123456 !important;
+    color: white;
+  }
+
+  .table tbody tr td, .table tbody tr th {
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+

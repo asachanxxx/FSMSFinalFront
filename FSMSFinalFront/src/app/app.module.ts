@@ -20,7 +20,7 @@ import {GlobalConfig} from './service/globalconfig.service';
 
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { GlobalConfig } from './service/globalconfig.service';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 
 @NgModule({
@@ -46,7 +46,10 @@ import { GlobalConfig } from './service/globalconfig.service';
     DataTablesModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    })
     
     
   ],
