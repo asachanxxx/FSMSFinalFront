@@ -1,4 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule  } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,12 +17,13 @@ import { VehiclesComponent } from './masterdata/vehicles/vehicles.component';
 import { RfcardsComponent } from './masterdata/rfcards/rfcards.component';
 import { CompanyComponent } from './masterdata/company/company.component';
 import { FueltypesComponent } from './masterdata/fueltypes/fueltypes.component';
-
+import {FieldErrorDisplayComponent} from './validators/app-field-error-display';
 
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-
+import { GlobalConfig } from './service/globalconfig.service';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     RfcardsComponent,
     CompanyComponent,
     FueltypesComponent,
+    FieldErrorDisplayComponent
     
   ],
   imports: [
@@ -49,8 +52,9 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     ReactiveFormsModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
-    })
-    
+    }),
+    ToastModule.forRoot(),
+    BrowserAnimationsModule
     
   ],
   providers: [GlobalConfig],

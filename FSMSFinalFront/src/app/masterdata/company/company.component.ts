@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/filter'
 import {Observable} from 'rxjs';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
 
 @Component({
   selector: 'app-company',
@@ -9,9 +15,14 @@ import {Observable} from 'rxjs';
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit, AfterViewInit {
+  
+  
+  ngAfterViewInit(): void {
+    
+  }
  
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient,private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -32,6 +43,22 @@ export class CompanyComponent implements OnInit, AfterViewInit {
         () => console.log("Streaming is over")
   );
 
+
+  this.form = this.formBuilder.group({
+    name: [null, Validators.required],
+    email: [null, [Validators.required, Validators.email]],
+    address: this.formBuilder.group({
+      street: [null, Validators.required],
+      street2: [null],
+      zipCode: [null, Validators.required],
+      city: [null, Validators.required],
+      state: [null, Validators.required],
+      country: [null, Validators.required]
+    })
+  });
+
+
+
   }
 
   public popoverTitle: string = 'Popover title';
@@ -40,18 +67,16 @@ export class CompanyComponent implements OnInit, AfterViewInit {
   public cancelClicked: boolean = false;
 
 
-  onSubmit(event){
-    console.log(event)
+  // onSubmit(event){
+  //   console.log(event)
   
-  }
+  // }
 
   cancel(val:boolean){
     console.log(val);
   }
   confirm(status:boolean,val2:any){
     console.log(status, val2);
-
-  
   }
   API_URL = ""
   getCustomerList(_archid): void {
@@ -64,6 +89,56 @@ export class CompanyComponent implements OnInit, AfterViewInit {
         console.log (error.name + ' ' + error.message);
       });
   }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+form: FormGroup;
+
+isFieldValid(field: string) {
+  return !this.form.get(field).valid && this.form.get(field).touched;
+}
+
+displayFieldCss(field: string) {
+  return {
+    'has-error': this.isFieldValid(field),
+    'has-feedback': this.isFieldValid(field)
+  };
+}
+
+onSubmit() {
+  console.log(this.form);
+  if (this.form.valid) {
+    console.log('form submitted');
+  } else {
+    this.validateAllFormFields(this.form);
+  }
+}
+
+validateAllFormFields(formGroup: FormGroup) {
+  Object.keys(formGroup.controls).forEach(field => {
+    console.log(field);
+    const control = formGroup.get(field);
+    if (control instanceof FormControl) {
+      control.markAsTouched({ onlySelf: true });
+    } else if (control instanceof FormGroup) {
+      this.validateAllFormFields(control);
+    }
+  });
+}
+
+reset(){
+  this.form.reset();
+}
+
+
+
+
+
+
+
+
 
 
 

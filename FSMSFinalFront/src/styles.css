@@ -1,40 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+
+
 /* ///////////////////////////// Default Overrides //////////////////////////////////////// */
 
 .sidebar .user-info {
-    height: 105px;
+  height: 105px;
 }
 
 .sidebar .user-info .info-container .user-helper-dropdown {
-    right: 5px;
-    bottom: -2px;
+  right: 5px;
+  bottom: -2px;
 }
 
 .sidebar .user-info .info-container {
-    position: initial;
+  position: initial;
 }
 
-.card .body .col-xs-12, .card .body .col-sm-12, .card .body .col-md-12, .card .body .col-lg-12 {
-    margin-bottom: 0px;
+.card .body .col-xs-12,
+.card .body .col-sm-12,
+.card .body .col-md-12,
+.card .body .col-lg-12 {
+  margin-bottom: 0px;
 }
 
 .card .header {
-    padding: 13px 20px;
+  padding: 13px 20px;
 }
 
 .card .header .header-dropdown {
-    top: 13px;
-
-} 
-
+  top: 13px;
+}
 
 .table tr.active td {
-    background-color:#123456 !important;
-    color: white;
-  }
+  background-color: #009688 !important;
+  color: white;
+}
 
-  .table tbody tr td, .table tbody tr th {
-    padding: 8px 10px;
-    cursor: pointer;
-  }
+.table tbody tr td,
+.table tbody tr th {
+  padding: 3px 10px;
+  cursor: pointer;
+}
 
+th.sorting {
+  color: #009688;
+}
+
+.control-label.required:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  top: 7px;
+}
+
+.error-msg {
+  color: #a94442;
+  font-size: 0.8em;
+}
+
+.fix-error-icon {
+  top: 27px;
+}
+
+.alert-success {
+  background-color: #2b982b;
+  padding: 5px 10px;
+}
+
+.alert-danger{
+   padding: 5px 10px;
+}
