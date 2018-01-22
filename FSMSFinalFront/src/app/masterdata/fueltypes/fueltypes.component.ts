@@ -34,7 +34,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
   selectedRow: any;
   holdvar: FuelType[] = [];
   filterholder: FuelType[];
-
+  selectedItem: FuelType;
   obj: FuelType = new FuelType();
 
   issuccess = false;
@@ -93,6 +93,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
     this.Filter();
     this.switchData();
     this.showSuccess("Program Inisialized");
+    this.selectedItem = new FuelType();
   }
 
   ngAfterViewInit(): void {
@@ -110,7 +111,8 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
 
   Filter() {
     let hed: HttpHeaders = new HttpHeaders();
-    this._http.get<FuelType[]>("http://localhost:52904/FuelTypesDapper/GetAll", { headers: this.customHeaders })
+    let link = this.gloconfig.GetConnection("FuelTypesDapper", "GetAll")
+    this._http.get<FuelType[]>(this.gloconfig.GetConnection("FuelTypesDapper", "GetAll"), { headers: this.customHeaders })
       .subscribe(
       data => {
         this.filterholder = data;
@@ -122,8 +124,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
         this.holdvar = this.filterholder;
         this.switchData();
         console.log("Finish", this.holdvar)
-      }
-      );
+      });
   }
 
   switchData(): void {
@@ -142,6 +143,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
 
   setClickedRow(item: any, i: any) {
     this.selectedRow = i;
+    this.selectedItem = item;
   }
 
   onSubmit(myform, event, btn) {
@@ -158,13 +160,8 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
 
     switch (btn) {
       case 'Insert':
-      console.log("On Submit - case insert :", btn)
+        console.log("On Submit - case insert :", btn)
         this.obj.Id = -1;
-        //this.Save(this.obj);
-        break;
-      case 'Update':
-      console.log("On Submit - case update :", btn)
-        //this.Update(this.obj);
         break;
       default: break;
     }
@@ -184,12 +181,12 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
   }
 
   SaveCancel() {
-
+    console.log("User try to Insert. but cancelled");
   }
 
   Save(item: FuelType) {
     console.log("Save Confirmed!", this.myform.valid);
-    this._http.post("http://localhost:52904/FuelTypesDapper/SaveAsync", item)
+    this._http.post(this.gloconfig.GetConnection("FuelTypesDapper", "SaveAsync"), item)
       .subscribe(
       data => {
         console.log(data)
@@ -202,7 +199,6 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
         console.log("Finish")
         this.Filter();
         this.switchData();
-
       })
   }
 
@@ -221,15 +217,15 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
   }
 
   UpdateCancel() {
-
+    console.log("User try to update. but cancelled");
   }
 
   Update(item: FuelType) {
-    this._http.post("http://localhost:52904/FuelTypesDapper/UpdateAsync", item)
+    this._http.post(this.gloconfig.GetConnection("FuelTypesDapper", "UpdateAsync"), item)
       .subscribe(
       data => {
         console.log(data)
-        if(data ===true){
+        if (data === true) {
           this.showSuccess("Record Updated SuccessFully!");
         }
       },
@@ -241,8 +237,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
         console.log("Finish")
         this.Filter();
         this.switchData();
-      }
-      )
+      });
   }
 
 
@@ -252,15 +247,15 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
   }
 
   deleteCancel() {
-
+    console.log("User try to Delete. but cancelled");
   }
 
   Delete(id: number) {
-    this._http.post(`http://localhost:52904/FuelTypesDapper/DeleteAsync?id=${id}`, id)
+    this._http.post(this.gloconfig.GetConnection("FuelTypesDapper", "DeleteAsync") + `?id=${id}`, id)
       .subscribe(
       data => {
         console.log(data)
-        if(data ===true){
+        if (data === true) {
           this.showSuccess("Record Deleted SuccessFully!");
         }
       },
@@ -272,7 +267,6 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
         console.log("Finish")
         this.Filter();
         this.switchData();
-      }
-      )
+      });
   }
 }

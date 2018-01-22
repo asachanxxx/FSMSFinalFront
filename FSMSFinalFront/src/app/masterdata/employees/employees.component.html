@@ -1,3 +1,351 @@
-<p>
-  employees works!
-</p>
+<div class="row clearfix">
+	<div class="card">
+		<div class="header bg-teal">
+			<h2>ALL FUEL TYPES(????? ???? )</h2>
+			<ul class="header-dropdown m-r--5">
+				<li class="dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<i class="material-icons">more_vert</i>
+					</a>
+					<ul class="dropdown-menu pull-right">
+						<li>
+							<a href="javascript:void(0);" class=" waves-effect waves-block">Add Fuel Type</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" class=" waves-effect waves-block">Delete Slected</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" class=" waves-effect waves-block">View Full Details</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="body">
+
+
+			<div class="row clearfix">
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+					<div *ngIf="issuccess" class="alert alert-success">
+						<strong>Well done!</strong> {{successmsg}}
+					</div>
+
+					<div *ngIf="iserror" class="alert alert-danger">
+						<strong>Ooops!</strong> {{errormsg}}
+					</div>
+				</div>
+			</div>
+
+			<div class="row clearfix">
+
+				<!-- Task Info -->
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+					<div class="card">
+						<div class="body">
+							<div class="table-responsive">
+								<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover dashboard-task-infos">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Fuel Name</th>
+											<th>Fuel ShortName</th>
+											<th>Unit Price</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody *ngIf="holdvar">
+										<tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
+											<td>{{item.Id}}</td>
+											<td>{{item.FuelFullName}}</td>
+											<td>{{item.FuelShortName}}</td>
+											<td>
+												{{item.UnitPrice}}
+											</td>
+											<td>
+												<a class="btn  btn-xs btn-danger waves-effect" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageDelete"
+												    [confirmText]="confirmText" [cancelText]="cancelText" [placement]="top" (confirm)="deleteConfirm(item)" (cancel)="deleteCancel()"
+												    confirmButtonType="danger" cancelButtonType="default" [appendToBody]="true">
+													X </a>
+											</td>
+										</tr>
+
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- #END# Task Info -->
+				<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+					<div class="card">
+						<div class="body">
+							<form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
+								<input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+								<label for="email_address">Fuel Name (????? ?????? ??)</label>
+								<div class="form-group" [ngClass]="displayFieldCss('FuelFullName')">
+									<div class="form-line">
+										<input type="text" required id="email_address" formControlName="FuelFullName" [ngModel]="selectedItem.FuelFullName" class="form-control"
+										    placeholder="Fuel Name (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+									</div>
+									<div>
+										<app-field-error-display [displayError]="isFieldValid('FuelFullName')" errorMsg="Fuel Name (????? ?????? ??) required!">
+										</app-field-error-display>
+									</div>
+								</div>
+								<label for="email_address">Fuel Short Name (???? ?? )</label>
+								<div class="form-group" [ngClass]="displayFieldCss('FuelShortName')">
+									<div class="form-line">
+										<input type="text" id="email_address" formControlName="FuelShortName" [ngModel]="selectedItem.FuelShortName" class="form-control"
+										    placeholder="Fuel Short Name (???? ?? )">
+									</div>
+									<app-field-error-display [displayError]="isFieldValid('FuelShortName')" errorMsg="This Field Is reqired! 10 Charactors Maximum">
+									</app-field-error-display>
+								</div>
+								<label for="email_address">Unit Price (????? ???)</label>
+								<div class="form-group">
+									<div class="form-line">
+										<input type="number" id="email_address" formControlName="UnitPrice" [ngModel]="selectedItem.UnitPrice" class="form-control"
+										    placeholder="Unit Price (????? ???)">
+									</div>
+									<app-field-error-display [displayError]="isFieldValid('UnitPrice')" errorMsg="This Field Is reqired! Numbers Only!">
+									</app-field-error-display>
+								</div>
+								<button class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+								    [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+								    confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
+									Insert {{ placement }}
+								</button>
+								<button class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+								    [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
+								    confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
+									Update {{ placement }}
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Browser Usage -->
+</div>
+<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+	<div class="card">
+		<div class="body">
+			<form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
+				<input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+
+
+
+				<label for="EmployeeCode">EmployeeCode (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('EmployeeCode')">
+					<div class="form-line">
+						<input type="text" required id="ID_EmployeeCode" formControlName="EmployeeCode" [ngModel]="selectedItem.EmployeeCode" class="form-control"
+						    placeholder="EmployeeCode (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('EmployeeCode')" errorMsg="EmployeeCode (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="EmployeeName">EmployeeName (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('EmployeeName')">
+					<div class="form-line">
+						<input type="text" required id="ID_EmployeeName" formControlName="EmployeeName" [ngModel]="selectedItem.EmployeeName" class="form-control"
+						    placeholder="EmployeeName (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('EmployeeName')" errorMsg="EmployeeName (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="Telephone">Telephone (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('Telephone')">
+					<div class="form-line">
+						<input type="text" required id="ID_Telephone" formControlName="Telephone" [ngModel]="selectedItem.Telephone" class="form-control"
+						    placeholder="Telephone (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('Telephone')" errorMsg="Telephone (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="Mobile">Mobile (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('Mobile')">
+					<div class="form-line">
+						<input type="text" required id="ID_Mobile" formControlName="Mobile" [ngModel]="selectedItem.Mobile" class="form-control"
+						    placeholder="Mobile (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('Mobile')" errorMsg="Mobile (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="IsActive">IsActive (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('IsActive')">
+					<div class="form-line">
+						<input type="text" required id="ID_IsActive" formControlName="IsActive" [ngModel]="selectedItem.IsActive" class="form-control"
+						    placeholder="IsActive (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('IsActive')" errorMsg="IsActive (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="CreditLimit">CreditLimit (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('CreditLimit')">
+					<div class="form-line">
+						<input type="text" required id="ID_CreditLimit" formControlName="CreditLimit" [ngModel]="selectedItem.CreditLimit" class="form-control"
+						    placeholder="CreditLimit (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('CreditLimit')" errorMsg="CreditLimit (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="CashInHand">CashInHand (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('CashInHand')">
+					<div class="form-line">
+						<input type="text" required id="ID_CashInHand" formControlName="CashInHand" [ngModel]="selectedItem.CashInHand" class="form-control"
+						    placeholder="CashInHand (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('CashInHand')" errorMsg="CashInHand (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="LocationID">LocationID (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('LocationID')">
+					<div class="form-line">
+						<input type="text" required id="ID_LocationID" formControlName="LocationID" [ngModel]="selectedItem.LocationID" class="form-control"
+						    placeholder="LocationID (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('LocationID')" errorMsg="LocationID (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="GroupOfCompanyID">GroupOfCompanyID (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('GroupOfCompanyID')">
+					<div class="form-line">
+						<input type="text" required id="ID_GroupOfCompanyID" formControlName="GroupOfCompanyID" [ngModel]="selectedItem.GroupOfCompanyID"
+						    class="form-control" placeholder="GroupOfCompanyID (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('GroupOfCompanyID')" errorMsg="GroupOfCompanyID (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="CreatedUser">CreatedUser (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('CreatedUser')">
+					<div class="form-line">
+						<input type="text" required id="ID_CreatedUser" formControlName="CreatedUser" [ngModel]="selectedItem.CreatedUser" class="form-control"
+						    placeholder="CreatedUser (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('CreatedUser')" errorMsg="CreatedUser (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="CreatedDate">CreatedDate (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('CreatedDate')">
+					<div class="form-line">
+						<input type="text" required id="ID_CreatedDate" formControlName="CreatedDate" [ngModel]="selectedItem.CreatedDate" class="form-control"
+						    placeholder="CreatedDate (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('CreatedDate')" errorMsg="CreatedDate (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="ModifiedUser">ModifiedUser (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('ModifiedUser')">
+					<div class="form-line">
+						<input type="text" required id="ID_ModifiedUser" formControlName="ModifiedUser" [ngModel]="selectedItem.ModifiedUser" class="form-control"
+						    placeholder="ModifiedUser (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('ModifiedUser')" errorMsg="ModifiedUser (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="ModifiedDate">ModifiedDate (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('ModifiedDate')">
+					<div class="form-line">
+						<input type="text" required id="ID_ModifiedDate" formControlName="ModifiedDate" [ngModel]="selectedItem.ModifiedDate" class="form-control"
+						    placeholder="ModifiedDate (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('ModifiedDate')" errorMsg="ModifiedDate (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="DataTransfer">DataTransfer (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('DataTransfer')">
+					<div class="form-line">
+						<input type="text" required id="ID_DataTransfer" formControlName="DataTransfer" [ngModel]="selectedItem.DataTransfer" class="form-control"
+						    placeholder="DataTransfer (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('DataTransfer')" errorMsg="DataTransfer (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="CompanyId">CompanyId (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('CompanyId')">
+					<div class="form-line">
+						<input type="text" required id="ID_CompanyId" formControlName="CompanyId" [ngModel]="selectedItem.CompanyId" class="form-control"
+						    placeholder="CompanyId (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('CompanyId')" errorMsg="CompanyId (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="Passcode">Passcode (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('Passcode')">
+					<div class="form-line">
+						<input type="text" required id="ID_Passcode" formControlName="Passcode" [ngModel]="selectedItem.Passcode" class="form-control"
+						    placeholder="Passcode (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('Passcode')" errorMsg="Passcode (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="BasicMonthlySalary">BasicMonthlySalary (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('BasicMonthlySalary')">
+					<div class="form-line">
+						<input type="text" required id="ID_BasicMonthlySalary" formControlName="BasicMonthlySalary" [ngModel]="selectedItem.BasicMonthlySalary"
+						    class="form-control" placeholder="BasicMonthlySalary (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('BasicMonthlySalary')" errorMsg="BasicMonthlySalary (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+				<label for="HorlyRate">HorlyRate (????? ?????? ??)</label>
+				<div class="form-group" [ngClass]="displayFieldCss('HorlyRate')">
+					<div class="form-line">
+						<input type="text" required id="ID_HorlyRate" formControlName="HorlyRate" [ngModel]="selectedItem.HorlyRate" class="form-control"
+						    placeholder="HorlyRate (????? ?????? ??)" [ngClass]="displayFieldCss('FuelFullName')">
+					</div>
+					<div>
+						<app-field-error-display [displayError]="isFieldValid('HorlyRate')" errorMsg="HorlyRate (????? ?????? ??) required!">
+						</app-field-error-display>
+					</div>
+				</div>
+
+
+
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+<!-- #END# Browser Usage -->
+</div>

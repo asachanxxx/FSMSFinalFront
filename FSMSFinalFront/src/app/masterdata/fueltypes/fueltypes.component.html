@@ -1,7 +1,5 @@
 <div class="row clearfix">
-
   <div class="card">
-
     <div class="header bg-teal">
       <h2>ALL FUEL TYPES(ඉන්ධන වර්ග )</h2>
       <ul class="header-dropdown m-r--5">
@@ -62,13 +60,9 @@
                       <td>{{item.FuelFullName}}</td>
                       <td>{{item.FuelShortName}}</td>
                       <td>
-                        <!-- <span class="label bg-teal">{{item.UnitPrice}}</span> -->
                         {{item.UnitPrice}}
                       </td>
                       <td>
-                        <!-- <button (click) = "delete(item)" type="button" class="btn  btn-xs btn-default waves-effect">
-                          X
-                        </button> -->
                         <a class="btn  btn-xs btn-danger waves-effect" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageDelete"
                           [confirmText]="confirmText" [cancelText]="cancelText" [placement]="top" (confirm)="deleteConfirm(item)"
                           (cancel)="deleteCancel()" confirmButtonType="danger" cancelButtonType="default" [appendToBody]="true">
@@ -84,16 +78,13 @@
           </div>
         </div>
         <!-- #END# Task Info -->
-        <!-- Browser Usage (ngSubmit)="onSubmit(content,myform,$event) -->
+        
 
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
           <div class="card">
             <div class="body">
               <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
-
                 <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
-
-
                 <label for="email_address">Fuel Name (ඉන්ධන වර්ගයේ නම)</label>
                 <div class="form-group" [ngClass]="displayFieldCss('FuelFullName')">
                   <div class="form-line">
@@ -106,6 +97,7 @@
                   </div>
                 </div>
 
+                
                 <label for="email_address">Fuel Short Name (කෙටි නම )</label>
                 <div class="form-group" [ngClass]="displayFieldCss('FuelShortName')">
                   <div class="form-line">
@@ -115,7 +107,6 @@
                   <app-field-error-display [displayError]="isFieldValid('FuelShortName')" errorMsg="This Field Is reqired! 10 Charactors Maximum">
                   </app-field-error-display>
                 </div>
-
                 <label for="email_address">Unit Price (ඒකකයක මිල)</label>
                 <div class="form-group">
                   <div class="form-line">
@@ -125,7 +116,6 @@
                   <app-field-error-display [displayError]="isFieldValid('UnitPrice')" errorMsg="This Field Is reqired! Numbers Only!">
                   </app-field-error-display>
                 </div>
-
                 <button class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
                   [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
                   confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
@@ -136,14 +126,11 @@
                   confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
                   Update {{ placement }}
                 </button>
-
               </form>
-
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <!-- #END# Browser Usage -->
