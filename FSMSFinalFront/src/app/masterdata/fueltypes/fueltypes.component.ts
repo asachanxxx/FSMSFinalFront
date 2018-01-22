@@ -6,9 +6,8 @@ import { DataTableDirective } from 'angular-datatables'
 import 'rxjs/add/operator/map';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { GlobalConfig } from '../../service/globalconfig.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { HttpHeaders } from '@angular/common/http';
-//import { setTimeout } from '@';
+
 
 @Component({
   selector: 'app-fueltypes',
@@ -22,16 +21,17 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
   dtTrigger: Subject<any> = new Subject();
   dtInstance: DataTables.Api;
 
-  popoverTitle: string = 'Are you sure?';
-  popoverMessageSave: string = 'Are you really <b>sure</b> you want to insert this?';
-  popoverMessageUpdate: string = 'Are you really <b>sure</b> you want to update this?';
-  popoverMessageDelete: string = 'Are you really <b>sure</b> you want to Delete this?';
+  popoverTitle: string = this.gloconfig.GetmessageCaption;
+  popoverMessageSave: string = this.gloconfig.GetconfirmInsert;
+  popoverMessageUpdate: string = this.gloconfig.GetconfirmModify;
+  popoverMessageDelete: string = this.gloconfig.GetconfirmDelete;
   confirmText: string = 'Yes <i class="glyphicon glyphicon-ok"></i>';
   cancelText: string = 'No <i class="glyphicon glyphicon-remove"></i>';
 
   private customHeaders: HttpHeaders = this.setCredentialsHeader();
   myform: FormGroup;
   selectedRow: any;
+  selectedItem: FuelType;
   holdvar: FuelType[] = [];
   filterholder: FuelType[];
   selectedItem: FuelType;
@@ -43,9 +43,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
   errormsg = "Inisizlising success message";
 
   constructor(private _http: HttpClient, private gloconfig: GlobalConfig,
-    private formBuilder: FormBuilder) {
-
-  }
+    private formBuilder: FormBuilder) { }
 
   showSuccess(message: string) {
     this.issuccess = true;
@@ -55,6 +53,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
       this.issuccess = false;
       this.iserror = false;
     }, 5000);
+    this.selectedItem = new FuelType();
   }
 
   showError(message: string) {
@@ -157,7 +156,6 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
     this.obj.ModifiedUser = this.gloconfig.GetlogedInUserID
     this.obj.DataTransfer = 1;
     this.obj.GroupOfCompanyID = 1;
-
     switch (btn) {
       case 'Insert':
         console.log("On Submit - case insert :", btn)

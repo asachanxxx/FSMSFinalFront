@@ -23,7 +23,7 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { GlobalConfig } from './service/globalconfig.service';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +53,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
     }),
-    ToastModule.forRoot(),
+   
     BrowserAnimationsModule
     
   ],
