@@ -11,8 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private gloconfig:GlobalConfig) { }
 
   ngOnInit() {
-    this.gloconfig.SetglobalConnection = "http://localhost:52904/";
-    this.gloconfig.SetlogedInUserID = 1;
+  
   }
 
 }

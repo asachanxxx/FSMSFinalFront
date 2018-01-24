@@ -34,8 +34,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
   selectedItem: FuelType;
   holdvar: FuelType[] = [];
   filterholder: FuelType[];
-  selectedItem: FuelType;
-  obj: FuelType = new FuelType();
+    obj: FuelType = new FuelType();
 
   issuccess = false;
   iserror = false;
@@ -43,7 +42,16 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
   errormsg = "Inisizlising success message";
 
   constructor(private _http: HttpClient, private gloconfig: GlobalConfig,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder) {
+      
+      this.myform = this.formBuilder.group({
+        Id: [''],
+        FuelFullName: [''],
+        FuelShortName: ['', [Validators.required, Validators.maxLength(10)]],
+        UnitPrice: ['', Validators.required],
+      });
+
+    }
 
   showSuccess(message: string) {
     this.issuccess = true;
@@ -83,12 +91,7 @@ export class FueltypesComponent implements OnInit, AfterViewInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.myform = this.formBuilder.group({
-      Id: [null],
-      FuelFullName: [null, Validators.required],
-      FuelShortName: [null, [Validators.required, Validators.maxLength(10)]],
-      UnitPrice: [null, Validators.required],
-    });
+  
     this.Filter();
     this.switchData();
     this.showSuccess("Program Inisialized");

@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { GlobalConfig } from '../../service/globalconfig.service';
 import { HttpHeaders } from '@angular/common/http';
+import { NgNoValidate } from '@angular/forms/src/directives/ng_no_validate_directive';
 
 @Component({
   selector: 'app-company',
@@ -83,8 +84,9 @@ export class CompanyComponent implements OnInit, AfterViewInit {
       pageLength: 10,
     };
     this.myform = this.formBuilder.group({
-      CompanyCode: [null],
-      CompanyName: [null],
+      Id: [null],
+      CompanyCode:[],
+      CompanyName: [],
       OtherBusinessName1: [null],
       Address1: [null],
       Address2: [null],
