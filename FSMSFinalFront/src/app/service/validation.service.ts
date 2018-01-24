@@ -1,6 +1,6 @@
 export class ValidationService {
     static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
-        console.log("On Validation", validatorName,validatorValue);
+        //console.log("On Validation", validatorName,validatorValue);
         let config = {
             'required': 'Required',
             'invalidCreditCard': 'Is invalid credit card number',

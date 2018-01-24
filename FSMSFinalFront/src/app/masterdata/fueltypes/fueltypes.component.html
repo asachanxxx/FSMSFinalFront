@@ -94,9 +94,6 @@
                       placeholder="Fuel Name (ඉන්ධන වර්ගයේ නම)" [ngClass]="displayFieldCss('FuelFullName')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('FuelFullName')" errorMsg="Fuel Name (ඉන්ධන වර්ගයේ නම) required!">
-                    </app-field-error-display> -->
-                    <!-- <control-messages [control]="myform.controls.FuelFullName"></control-messages> -->
                   </div>
                 </div>
 
@@ -107,8 +104,6 @@
                     <input type="text" id="email_address" formControlName="FuelShortName" [ngModel]="selectedItem.FuelShortName" class="form-control"
                       placeholder="Fuel Short Name (කෙටි නම )">
                   </div>
-                  <!-- <app-field-error-display [displayError]="isFieldValid('FuelShortName')" errorMsg="This Field Is reqired! 10 Charactors Maximum">
-                  </app-field-error-display> -->
                   <control-messages [control]="myform.controls.FuelShortName"></control-messages>
                 </div>
 
@@ -118,8 +113,6 @@
                     <input type="number" id="email_address" formControlName="UnitPrice" [ngModel]="selectedItem.UnitPrice" class="form-control"
                       placeholder="Unit Price (ඒකකයක මිල)">
                   </div>
-                  <!-- <app-field-error-display [displayError]="isFieldValid('UnitPrice')" errorMsg="This Field Is reqired! Numbers Only!">
-                  </app-field-error-display> -->
                   <control-messages [control]="myform.controls.UnitPrice"></control-messages>
                 </div>
 

@@ -85,32 +85,32 @@ export class CompanyComponent implements OnInit, AfterViewInit {
     };
     this.myform = this.formBuilder.group({
       Id: [null],
-      CompanyCode:[],
-      CompanyName: [],
+      CompanyCode: ['', Validators.required],
+      CompanyName: ['', Validators.required],
       OtherBusinessName1: [null],
-      Address1: [null],
-      Address2: [null],
-      Address3: [null],
-      Telephone: [null],
-      Mobile: [null],
-      FaxNo: [null],
-      Email: [null],
-      WebAddress: [null],
-      ContactPerson: [null],
-      TaxID1: [null],
-      TaxID2: [null],
-      TaxRegistrationNumber1: [null],
-      TaxRegistrationNumber2: [null],
-      StartOfFiscalYear: [null],
-      CostingMethod: [null],
-      IsVat: [null],
-      IsDelete: [null],
-      GroupOfCompanyID: [null],
-      CreatedUser: [null],
-      CreatedDate: [null],
-      ModifiedUser: [null],
-      ModifiedDate: [null],
-      DataTransfer: [null],
+      Address1: [''],
+      Address2: [''],
+      Address3: [''],
+      Telephone: [''],
+      Mobile: [''],
+      FaxNo: [''],
+      Email: [''],
+      WebAddress: [''],
+      ContactPerson: [''],
+      TaxID1: [''],
+      TaxID2: [''],
+      TaxRegistrationNumber1: [''],
+      TaxRegistrationNumber2: [''],
+      StartOfFiscalYear: [''],
+      CostingMethod: [''],
+      IsVat: [''],
+      IsDelete: [''],
+      GroupOfCompanyID: [''],
+      CreatedUser: [''],
+      CreatedDate: [''],
+      ModifiedUser: [''],
+      ModifiedDate: [''],
+      DataTransfer: [''],
     });
     this.Filter();
     this.switchData();
@@ -172,25 +172,133 @@ export class CompanyComponent implements OnInit, AfterViewInit {
     this.obj.Id = myform.value.Id
     this.obj.CompanyCode = myform.value.CompanyCode
     this.obj.CompanyName = myform.value.CompanyName
-    this.obj.OtherBusinessName1 = myform.value.OtherBusinessName1
-    this.obj.Address1 = myform.value.Address1
-    this.obj.Address2 = myform.value.Address2
-    this.obj.Address3 = myform.value.Address3
-    this.obj.Telephone = myform.value.Telephone
-    this.obj.Mobile = myform.value.Mobile
-    this.obj.FaxNo = myform.value.FaxNo
-    this.obj.Email = myform.value.Email
-    this.obj.WebAddress = myform.value.WebAddress
-    this.obj.ContactPerson = myform.value.ContactPerson
-    this.obj.TaxID1 = myform.value.TaxID1
-    this.obj.TaxID2 = myform.value.TaxID2
-    this.obj.TaxRegistrationNumber1 = myform.value.TaxRegistrationNumber1
-    this.obj.TaxRegistrationNumber2 = myform.value.TaxRegistrationNumber2
-    this.obj.StartOfFiscalYear = myform.value.StartOfFiscalYear
-    this.obj.CostingMethod = myform.value.CostingMethod
-    this.obj.IsVat = myform.value.IsVat
-    this.obj.IsDelete = myform.value.IsDelete
-    this.obj.GroupOfCompanyID = myform.value.GroupOfCompanyID
+    this.obj.Id = myform.value.Id
+    if (myform.value.CompanyCode === "" || myform.value.CompanyCode === null || myform.value.CompanyCode === undefined) {
+      this.obj.CompanyCode = " - "
+    }
+    else {
+      this.obj.CompanyCode = myform.value.CompanyCode
+    }
+    if (myform.value.CompanyName === "" || myform.value.CompanyName === null || myform.value.CompanyName === undefined) {
+      this.obj.CompanyName = " - "
+    }
+    else {
+      this.obj.CompanyName = myform.value.CompanyName
+    }
+    if (myform.value.OtherBusinessName1 === "" || myform.value.OtherBusinessName1 === null || myform.value.OtherBusinessName1 === undefined) {
+      this.obj.OtherBusinessName1 = " - "
+    }
+    else {
+      this.obj.OtherBusinessName1 = myform.value.OtherBusinessName1
+    }
+    if (myform.value.Address1 === "" || myform.value.Address1 === null || myform.value.Address1 === undefined) {
+      this.obj.Address1 = " - "
+    }
+    else {
+      this.obj.Address1 = myform.value.Address1
+    }
+    if (myform.value.Address2 === "" || myform.value.Address2 === null || myform.value.Address2 === undefined) {
+      this.obj.Address2 = " - "
+    }
+    else {
+      this.obj.Address2 = myform.value.Address2
+    }
+    if (myform.value.Address3 === "" || myform.value.Address3 === null || myform.value.Address3 === undefined) {
+      this.obj.Address3 = " - "
+    }
+    else {
+      this.obj.Address3 = myform.value.Address3
+    }
+    if (myform.value.Telephone === "" || myform.value.Telephone === null || myform.value.Telephone === undefined) {
+      this.obj.Telephone = " - "
+    }
+    else {
+      this.obj.Telephone = myform.value.Telephone
+    }
+    if (myform.value.Mobile === "" || myform.value.Mobile === null || myform.value.Mobile === undefined) {
+      this.obj.Mobile = " - "
+    }
+    else {
+      this.obj.Mobile = myform.value.Mobile
+    }
+    if (myform.value.FaxNo === "" || myform.value.FaxNo === null || myform.value.FaxNo === undefined) {
+      this.obj.FaxNo = " - "
+    }
+    else {
+      this.obj.FaxNo = myform.value.FaxNo
+    }
+    if (myform.value.Email === "" || myform.value.Email === null || myform.value.Email === undefined) {
+      this.obj.Email = " - "
+    }
+    else {
+      this.obj.Email = myform.value.Email
+    }
+    if (myform.value.WebAddress === "" || myform.value.WebAddress === null || myform.value.WebAddress === undefined) {
+      this.obj.WebAddress = " - "
+    }
+    else {
+      this.obj.WebAddress = myform.value.WebAddress
+    }
+    if (myform.value.ContactPerson === "" || myform.value.ContactPerson === null || myform.value.ContactPerson === undefined) {
+      this.obj.ContactPerson = " - "
+    }
+    else {
+      this.obj.ContactPerson = myform.value.ContactPerson
+    }
+    if (myform.value.TaxID1 === "" || myform.value.TaxID1 === null || myform.value.TaxID1 === undefined) {
+      this.obj.TaxID1 = 0
+    }
+    else {
+      this.obj.TaxID1 = myform.value.TaxID1
+    }
+    if (myform.value.TaxID2 === "" || myform.value.TaxID2 === null || myform.value.TaxID2 === undefined) {
+      this.obj.TaxID2 = 0
+    }
+    else {
+      this.obj.TaxID2 = myform.value.TaxID2
+    }
+    if (myform.value.TaxRegistrationNumber1 === "" || myform.value.TaxRegistrationNumber1 === null || myform.value.TaxRegistrationNumber1 === undefined) {
+      this.obj.TaxRegistrationNumber1 = " - "
+    }
+    else {
+      this.obj.TaxRegistrationNumber1 = myform.value.TaxRegistrationNumber1
+    }
+    if (myform.value.TaxRegistrationNumber2 === "" || myform.value.TaxRegistrationNumber2 === null || myform.value.TaxRegistrationNumber2 === undefined) {
+      this.obj.TaxRegistrationNumber2 = " - "
+    }
+    else {
+      this.obj.TaxRegistrationNumber2 = myform.value.TaxRegistrationNumber2
+    }
+    if (myform.value.StartOfFiscalYear === "" || myform.value.StartOfFiscalYear === null || myform.value.StartOfFiscalYear === undefined) {
+      this.obj.StartOfFiscalYear = 2018
+    }
+    else {
+      this.obj.StartOfFiscalYear = myform.value.StartOfFiscalYear
+    }
+    if (myform.value.CostingMethod === "" || myform.value.CostingMethod === null || myform.value.CostingMethod === undefined) {
+      this.obj.CostingMethod = " - "
+    }
+    else {
+      this.obj.CostingMethod = myform.value.CostingMethod
+    }
+    if (myform.value.IsVat === "" || myform.value.IsVat === null || myform.value.IsVat === undefined) {
+      this.obj.IsVat = true
+    }
+    else {
+      this.obj.IsVat = myform.value.IsVat
+    }
+    if (myform.value.IsDelete === "" || myform.value.IsDelete === null || myform.value.IsDelete === undefined) {
+      this.obj.IsDelete = false
+    }
+    else {
+      this.obj.IsDelete = myform.value.IsDelete
+    }
+    if (myform.value.GroupOfCompanyID === "" || myform.value.GroupOfCompanyID === null || myform.value.GroupOfCompanyID === undefined) {
+      this.obj.GroupOfCompanyID = 1
+    }
+    else {
+      this.obj.GroupOfCompanyID = myform.value.GroupOfCompanyID
+    }
     this.obj.CreatedUser = this.gloconfig.GetlogedInUserID;
     this.obj.CreatedDate = new Date();
     this.obj.ModifiedUser = this.gloconfig.GetlogedInUserID
@@ -287,7 +395,7 @@ export class CompanyComponent implements OnInit, AfterViewInit {
   }
 
   Delete(id: number) {
-    this._http.post(this.gloconfig.GetConnection("Companie", "DeleteAsync") + `?id =${id}`, id)
+    this._http.post(`${this.gloconfig.GetConnection("Companie", "DeleteAsync")}?id=${id}`, id)
       .subscribe(
       data => {
         console.log(data)

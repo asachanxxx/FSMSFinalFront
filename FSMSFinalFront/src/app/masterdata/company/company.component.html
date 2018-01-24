@@ -1,7 +1,7 @@
 <div class="row clearfix">
   <div class="card">
     <div class="header bg-teal">
-      <h2>ALL FUEL TYPES(????? ???? )</h2>
+      <h2>COMPANY DETAILS</h2>
       <ul class="header-dropdown m-r--5">
         <li class="dropdown">
           <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -26,7 +26,7 @@
 
 
       <div class="row clearfix">
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div *ngIf="issuccess" class="alert alert-success">
             <strong>Well done!</strong> {{successmsg}}
           </div>
@@ -85,59 +85,56 @@
           <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
             <div class="row clearfix">
 
+
+              <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="CompanyCode">CompanyCode (????? ?????? ??)</label>
+                <label for="CompanyCode">Company Code</label>
                 <div class="form-group" [ngClass]="displayFieldCss('CompanyCode')">
                   <div class="form-line">
-                    <input type="text" required id="ID_CompanyCode" formControlName="CompanyCode" [ngModel]="selectedItem.CompanyCode" class="form-control"
-                      placeholder="CompanyCode (????? ?????? ??)" [ngClass]="displayFieldCss('CompanyCode')">
+                    <input type="text"  id="ID_CompanyCode" formControlName="CompanyCode" [ngModel]="selectedItem.CompanyCode" class="form-control"
+                      placeholder="Company Code " [ngClass]="displayFieldCss('CompanyCode')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('CompanyCode')" errorMsg="CompanyCode (????? ?????? ??) required!">
-                    </app-field-error-display> -->
+                    <control-messages [control]="myform.controls.CompanyName"></control-messages>
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                <label for="CompanyName">CompanyName (????? ?????? ??)</label>
+                <label for="CompanyName">Company Name </label>
                 <div class="form-group" [ngClass]="displayFieldCss('CompanyName')">
                   <div class="form-line">
-                    <input type="text" required id="ID_CompanyName" formControlName="CompanyName" [ngModel]="selectedItem.CompanyName" class="form-control"
-                      placeholder="CompanyName (????? ?????? ??)" [ngClass]="displayFieldCss('CompanyName')">
+                    <input type="text"  id="ID_CompanyName" formControlName="CompanyName" [ngModel]="selectedItem.CompanyName" class="form-control"
+                      placeholder="Company Name " [ngClass]="displayFieldCss('CompanyName')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('CompanyName')" errorMsg="CompanyName (????? ?????? ??) required!">
-                    </app-field-error-display> -->
+                    <control-messages [control]="myform.controls.CompanyName"></control-messages>
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="Address1">Street No/name (????? ?????? ??)</label>
+                <label for="Address1">Street No/name </label>
                 <div class="form-group" [ngClass]="displayFieldCss('Address1')">
                   <div class="form-line">
-                    <input type="text" required id="ID_Address1" formControlName="Address1" [ngModel]="selectedItem.Address1" class="form-control"
-                      placeholder="Address1 (????? ?????? ??)" [ngClass]="displayFieldCss('Address1')">
+                    <input type="text"  id="ID_Address1" formControlName="Address1" [ngModel]="selectedItem.Address1" class="form-control"
+                      placeholder="Street No/name " [ngClass]="displayFieldCss('Address1')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('Address1')" errorMsg="Address1 (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 <!-- City area/District -->
-                <label for="Address2">Town(????? ?????? ??)</label>
+                <label for="Address2">Town</label>
                 <div class="form-group" [ngClass]="displayFieldCss('Address2')">
                   <div class="form-line">
-                    <input type="text" required id="ID_Address2" formControlName="Address2" [ngModel]="selectedItem.Address2" class="form-control"
-                      placeholder="Address2 (????? ?????? ??)" [ngClass]="displayFieldCss('Address2')">
+                    <input type="text"  id="ID_Address2" formControlName="Address2" [ngModel]="selectedItem.Address2" class="form-control"
+                      placeholder="Town" [ngClass]="displayFieldCss('Address2')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('Address2')" errorMsg="Address2 (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
@@ -146,125 +143,107 @@
                 <label for="Address3">Postcode/District</label>
                 <div class="form-group" [ngClass]="displayFieldCss('Address3')">
                   <div class="form-line">
-                    <input type="text" required id="ID_Address3" formControlName="Address3" [ngModel]="selectedItem.Address3" class="form-control"
-                      placeholder="Address3 (????? ?????? ??)" [ngClass]="displayFieldCss('Address3')">
+                    <input type="text"  id="ID_Address3" formControlName="Address3" [ngModel]="selectedItem.Address3" class="form-control"
+                      placeholder="Postcode/District" [ngClass]="displayFieldCss('Address3')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('Address3')" errorMsg="Address3 (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="Telephone">Telephone (????? ?????? ??)</label>
+                <label for="Telephone">Telephone </label>
                 <div class="form-group" [ngClass]="displayFieldCss('Telephone')">
                   <div class="form-line">
-                    <input type="text" required id="ID_Telephone" formControlName="Telephone" [ngModel]="selectedItem.Telephone" class="form-control"
-                      placeholder="Telephone (????? ?????? ??)" [ngClass]="displayFieldCss('Telephone')">
+                    <input type="text"  id="ID_Telephone" formControlName="Telephone" [ngModel]="selectedItem.Telephone" class="form-control"
+                      placeholder="Telephone" [ngClass]="displayFieldCss('Telephone')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('Telephone')" errorMsg="Telephone (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="FaxNo">FaxNo (????? ?????? ??)</label>
+                <label for="FaxNo">FaxNo</label>
                 <div class="form-group" [ngClass]="displayFieldCss('FaxNo')">
                   <div class="form-line">
-                    <input type="text" required id="ID_FaxNo" formControlName="FaxNo" [ngModel]="selectedItem.FaxNo" class="form-control" placeholder="FaxNo (????? ?????? ??)"
+                    <input type="text"  id="ID_FaxNo" formControlName="FaxNo" [ngModel]="selectedItem.FaxNo" class="form-control" placeholder="FaxNo "
                       [ngClass]="displayFieldCss('FaxNo')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('FaxNo')" errorMsg="FaxNo (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="Email">Email (????? ?????? ??)</label>
+                <label for="Email">Email </label>
                 <div class="form-group" [ngClass]="displayFieldCss('Email')">
                   <div class="form-line">
-                    <input type="text" required id="ID_Email" formControlName="Email" [ngModel]="selectedItem.Email" class="form-control" placeholder="Email (????? ?????? ??)"
+                    <input type="text"  id="ID_Email" formControlName="Email" [ngModel]="selectedItem.Email" class="form-control" placeholder="Email "
                       [ngClass]="displayFieldCss('Email')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('Email')" errorMsg="Email (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="WebAddress">WebAddress (????? ?????? ??)</label>
+                <label for="WebAddress">Web Address </label>
                 <div class="form-group" [ngClass]="displayFieldCss('WebAddress')">
                   <div class="form-line">
-                    <input type="text" required id="ID_WebAddress" formControlName="WebAddress" [ngModel]="selectedItem.WebAddress" class="form-control"
-                      placeholder="WebAddress (????? ?????? ??)" [ngClass]="displayFieldCss('WebAddress')">
+                    <input type="text"  id="ID_WebAddress" formControlName="WebAddress" [ngModel]="selectedItem.WebAddress" class="form-control"
+                      placeholder="Web Address " [ngClass]="displayFieldCss('WebAddress')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('WebAddress')" errorMsg="WebAddress (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="ContactPerson">ContactPerson (????? ?????? ??)</label>
+                <label for="ContactPerson">Contact Person </label>
                 <div class="form-group" [ngClass]="displayFieldCss('ContactPerson')">
                   <div class="form-line">
-                    <input type="text" required id="ID_ContactPerson" formControlName="ContactPerson" [ngModel]="selectedItem.ContactPerson"
-                      class="form-control" placeholder="ContactPerson (????? ?????? ??)" [ngClass]="displayFieldCss('ContactPerson')">
+                    <input type="text"  id="ID_ContactPerson" formControlName="ContactPerson" [ngModel]="selectedItem.ContactPerson"
+                      class="form-control" placeholder="Contact Person " [ngClass]="displayFieldCss('ContactPerson')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('ContactPerson')" errorMsg="ContactPerson (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="TaxRegistrationNumber1">TaxRegistrationNumber1 (????? ?????? ??)</label>
+                <label for="TaxRegistrationNumber1">Tax Registration Number 1</label>
                 <div class="form-group" [ngClass]="displayFieldCss('TaxRegistrationNumber1')">
                   <div class="form-line">
-                    <input type="text" required id="ID_TaxRegistrationNumber1" formControlName="TaxRegistrationNumber1" [ngModel]="selectedItem.TaxRegistrationNumber1"
-                      class="form-control" placeholder="TaxRegistrationNumber1 (????? ?????? ??)" [ngClass]="displayFieldCss('TaxRegistrationNumber1')">
+                    <input type="text"  id="ID_TaxRegistrationNumber1" formControlName="TaxRegistrationNumber1" [ngModel]="selectedItem.TaxRegistrationNumber1"
+                      class="form-control" placeholder="Tax Registration Number1" [ngClass]="displayFieldCss('TaxRegistrationNumber1')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('TaxRegistrationNumber1')" errorMsg="TaxRegistrationNumber1 (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="TaxRegistrationNumber2">TaxRegistrationNumber2 (????? ?????? ??)</label>
+                <label for="TaxRegistrationNumber2">Tax Registration Number 2 </label>
                 <div class="form-group" [ngClass]="displayFieldCss('TaxRegistrationNumber2')">
                   <div class="form-line">
-                    <input type="text" required id="ID_TaxRegistrationNumber2" formControlName="TaxRegistrationNumber2" [ngModel]="selectedItem.TaxRegistrationNumber2"
-                      class="form-control" placeholder="TaxRegistrationNumber2 (????? ?????? ??)" [ngClass]="displayFieldCss('TaxRegistrationNumber2')">
+                    <input type="text"  id="ID_TaxRegistrationNumber2" formControlName="TaxRegistrationNumber2" [ngModel]="selectedItem.TaxRegistrationNumber2"
+                      class="form-control" placeholder="Tax Registration Number 2" [ngClass]="displayFieldCss('TaxRegistrationNumber2')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('TaxRegistrationNumber2')" errorMsg="TaxRegistrationNumber2 (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <label for="StartOfFiscalYear">StartOfFiscalYear (????? ?????? ??)</label>
+                <label for="StartOfFiscalYear">StartOfFiscalYear </label>
                 <div class="form-group" [ngClass]="displayFieldCss('StartOfFiscalYear')">
                   <div class="form-line">
-                    <input type="text" required id="ID_StartOfFiscalYear" formControlName="StartOfFiscalYear" [ngModel]="selectedItem.StartOfFiscalYear"
-                      class="form-control datetime" placeholder="StartOfFiscalYear (30/07/2016 23:59)" [ngClass]="displayFieldCss('StartOfFiscalYear')">
+                    <input type="text"  id="ID_StartOfFiscalYear" formControlName="StartOfFiscalYear" [ngModel]="selectedItem.StartOfFiscalYear"
+                      class="form-control datetime" placeholder="StartOfFiscalYear " [ngClass]="displayFieldCss('StartOfFiscalYear')">
                   </div>
                   <div>
-                    <!-- <app-field-error-display [displayError]="isFieldValid('StartOfFiscalYear')" errorMsg="StartOfFiscalYear (????? ?????? ??) required!">
-                    </app-field-error-display> -->
                   </div>
                 </div>
               </div>
@@ -272,6 +251,18 @@
 
             </div>
             <!-- End of Row -->
+
+            <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+            [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+            confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
+            Insert {{ placement }}
+          </button>
+          <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+            [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
+            confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
+            Update {{ placement }}
+          </button>
+
           </form>
           <!-- End of Form -->
         </div>
