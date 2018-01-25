@@ -42,7 +42,7 @@
         <!-- Task Info -->
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="card">
-            <div class="body">
+            <div class="body color-datagrid-back">
               <div class="table-responsive">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover dashboard-task-infos">
                   <thead>
@@ -84,8 +84,6 @@
         <div class="body">
           <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
             <div class="row clearfix">
-
-
               <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -96,7 +94,7 @@
                       placeholder="Company Code " [ngClass]="displayFieldCss('CompanyCode')">
                   </div>
                   <div>
-                    <control-messages [control]="myform.controls.CompanyName"></control-messages>
+                    <control-messages [control]="myform.controls.CompanyCode"></control-messages>
                   </div>
                 </div>
               </div>
@@ -127,7 +125,6 @@
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <!-- City area/District -->
                 <label for="Address2">Town</label>
                 <div class="form-group" [ngClass]="displayFieldCss('Address2')">
                   <div class="form-line">
@@ -341,6 +338,7 @@
 
 
     </div>
+
   </div>
   <!-- #END# Browser Usage -->
 </div>

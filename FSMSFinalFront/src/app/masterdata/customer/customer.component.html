@@ -1,3 +1,294 @@
-<p>
-  customer works!
-</p>
+<div class="row clearfix">
+  <div class="card">
+
+    <div class="header bg-teal">
+      <h2>ALL CUSTOMERS</h2>
+      <ul class="header-dropdown m-r--5">
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Add Fuel Type</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Delete Slected</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">View Full Details</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- End Of header bg-teal -->
+    <div class="body">
+
+      <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div *ngIf="issuccess" class="alert alert-success">
+            <strong>Well done!</strong> {{successmsg}}
+          </div>
+
+          <div *ngIf="iserror" class="alert alert-danger">
+            <strong>Ooops!</strong> {{errormsg}}
+          </div>
+        </div>
+      </div>
+      <!-- End Of Message Area -->
+
+      <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="card">
+            <div class="body color-datagrid-back">
+              <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover dashboard-task-infos">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Company Code</th>
+                      <th>Corparate Name</th>
+                      <th>Telephone</th>
+                      <th>Fax</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="holdvar">
+                    <tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
+                      <td>{{item.Id}}</td>
+                      <td>{{item.CompanyCode}}</td>
+                      <td>{{item.CompanyName}}</td>
+                      <td>{{item.Telephone}}</td>
+                      <td>{{item.FaxNo}}</td>
+                      <td>
+                        <a class="btn  btn-xs btn-danger waves-effect" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageDelete"
+                          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="top" (confirm)="deleteConfirm(item)"
+                          (cancel)="deleteCancel()" confirmButtonType="danger" cancelButtonType="default" [appendToBody]="true">
+                          X </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Of table area -->
+    </div>
+    <!-- End Of body -->
+
+    <div class="card">
+      <div class="body">
+
+        <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
+          <div class="row clearfix">
+            <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <label for="CustomerTitle">Title</label>
+              <div class="form-group" [ngClass]="displayFieldCss('CustomerTitle')">
+                <div class="form-line">
+                  <input type="text" id="ID_CustomerTitle" formControlName="CustomerTitle" [ngModel]="selectedItem.CustomerTitle" class="form-control"
+                    placeholder="CustomerTitle" [ngClass]="displayFieldCss('CustomerTitle')">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <label for="CustomerCode">Customer Code</label>
+              <div class="form-group" [ngClass]="displayFieldCss('CustomerCode')">
+                <div class="form-line">
+                  <input type="text" id="ID_CustomerCode" formControlName="CustomerCode" [ngModel]="selectedItem.CustomerCode" class="form-control"
+                    placeholder="CustomerCode" [ngClass]="displayFieldCss('CustomerCode')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+              <label for="CustomerName">Customer Name</label>
+              <div class="form-group" [ngClass]="displayFieldCss('CustomerName')">
+                <div class="form-line">
+                  <input type="text" id="ID_CustomerName" formControlName="CustomerName" [ngModel]="selectedItem.CustomerName" class="form-control"
+                    placeholder="CustomerName" [ngClass]="displayFieldCss('CustomerName')">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="Address1">Street No/name</label>
+              <div class="form-group" [ngClass]="displayFieldCss('Address1')">
+                <div class="form-line">
+                  <input type="text" id="ID_Address1" formControlName="Address1" [ngModel]="selectedItem.Address1" class="form-control" placeholder="Address1"
+                    [ngClass]="displayFieldCss('Address1')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="Address2">Town</label>
+              <div class="form-group" [ngClass]="displayFieldCss('Address2')">
+                <div class="form-line">
+                  <input type="text" id="ID_Address2" formControlName="Address2" [ngModel]="selectedItem.Address2" class="form-control" placeholder="Address2"
+                    [ngClass]="displayFieldCss('Address2')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="Address3">Postcode/District</label>
+              <div class="form-group" [ngClass]="displayFieldCss('Address3')">
+                <div class="form-line">
+                  <input type="text" id="ID_Address3" formControlName="Address3" [ngModel]="selectedItem.Address3" class="form-control" placeholder="Address3"
+                    [ngClass]="displayFieldCss('Address3')">
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="CustomerType">CustomerType</label>
+              <div class="form-group" [ngClass]="displayFieldCss('CustomerType')">
+                <div class="form-line">
+                  <input type="text" id="ID_CustomerType" formControlName="CustomerType" [ngModel]="selectedItem.CustomerType" class="form-control"
+                    placeholder="CustomerType" [ngClass]="displayFieldCss('CustomerType')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="ContactPersonName">ContactPersonName</label>
+              <div class="form-group" [ngClass]="displayFieldCss('ContactPersonName')">
+                <div class="form-line">
+                  <input type="text" id="ID_ContactPersonName" formControlName="ContactPersonName" [ngModel]="selectedItem.ContactPersonName"
+                    class="form-control" placeholder="ContactPersonName" [ngClass]="displayFieldCss('ContactPersonName')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="Gender">Gender</label>
+              <div class="form-group" [ngClass]="displayFieldCss('Gender')">
+                <div class="form-line">
+                  <input type="text" id="ID_Gender" formControlName="Gender" [ngModel]="selectedItem.Gender" class="form-control" placeholder="Gender"
+                    [ngClass]="displayFieldCss('Gender')">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="Email">Email</label>
+              <div class="form-group" [ngClass]="displayFieldCss('Email')">
+                <div class="form-line">
+                  <input type="text" id="ID_Email" formControlName="Email" [ngModel]="selectedItem.Email" class="form-control" placeholder="Email"
+                    [ngClass]="displayFieldCss('Email')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="CreditLimit">CreditLimit</label>
+              <div class="form-group" [ngClass]="displayFieldCss('CreditLimit')">
+                <div class="form-line">
+                  <input type="text" id="ID_CreditLimit" formControlName="CreditLimit" [ngModel]="selectedItem.CreditLimit" class="form-control"
+                    placeholder="CreditLimit" [ngClass]="displayFieldCss('CreditLimit')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="ChequeLimit">ChequeLimit</label>
+              <div class="form-group" [ngClass]="displayFieldCss('ChequeLimit')">
+                <div class="form-line">
+                  <input type="text" id="ID_ChequeLimit" formControlName="ChequeLimit" [ngModel]="selectedItem.ChequeLimit" class="form-control"
+                    placeholder="ChequeLimit" [ngClass]="displayFieldCss('ChequeLimit')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="Outstanding">Outstanding</label>
+              <div class="form-group" [ngClass]="displayFieldCss('Outstanding')">
+                <div class="form-line">
+                  <input type="text" id="ID_Outstanding" formControlName="Outstanding" [ngModel]="selectedItem.Outstanding" class="form-control"
+                    placeholder="Outstanding" [ngClass]="displayFieldCss('Outstanding')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="CustomerImage">CustomerImage</label>
+              <div class="form-group" [ngClass]="displayFieldCss('CustomerImage')">
+                <div class="form-line">
+                  <input type="text" id="ID_CustomerImage" formControlName="CustomerImage" [ngModel]="selectedItem.CustomerImage" class="form-control"
+                    placeholder="CustomerImage" [ngClass]="displayFieldCss('CustomerImage')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="Remark">Remark</label>
+              <div class="form-group" [ngClass]="displayFieldCss('Remark')">
+                <div class="form-line">
+                  <input type="text" id="ID_Remark" formControlName="Remark" [ngModel]="selectedItem.Remark" class="form-control" placeholder="Remark"
+                    [ngClass]="displayFieldCss('Remark')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="IsSuspended">IsSuspended</label>
+              <div class="form-group" [ngClass]="displayFieldCss('IsSuspended')">
+                <div class="form-line">
+                  <input type="text" id="ID_IsSuspended" formControlName="IsSuspended" [ngModel]="selectedItem.IsSuspended" class="form-control"
+                    placeholder="IsSuspended" [ngClass]="displayFieldCss('IsSuspended')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="IsBlackListed">IsBlackListed</label>
+              <div class="form-group" [ngClass]="displayFieldCss('IsBlackListed')">
+                <div class="form-line">
+                  <input type="text" id="ID_IsBlackListed" formControlName="IsBlackListed" [ngModel]="selectedItem.IsBlackListed" class="form-control"
+                    placeholder="IsBlackListed" [ngClass]="displayFieldCss('IsBlackListed')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="IsCreditAllowed">IsCreditAllowed</label>
+              <div class="form-group" [ngClass]="displayFieldCss('IsCreditAllowed')">
+                <div class="form-line">
+                  <input type="text" id="ID_IsCreditAllowed" formControlName="IsCreditAllowed" [ngModel]="selectedItem.IsCreditAllowed" class="form-control"
+                    placeholder="IsCreditAllowed" [ngClass]="displayFieldCss('IsCreditAllowed')">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="IsActive">IsActive</label>
+              <div class="form-group" [ngClass]="displayFieldCss('IsActive')">
+                <div class="form-line">
+                  <input type="text" id="ID_IsActive" formControlName="IsActive" [ngModel]="selectedItem.IsActive" class="form-control" placeholder="IsActive"
+                    [ngClass]="displayFieldCss('IsActive')">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Of CRUD row clearfix -->
+
+          <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+            [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+            confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
+            Insert {{ placement }}
+          </button>
+          <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+            [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
+            confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
+            Update {{ placement }}
+          </button>
+
+
+        </form>
+        <!-- End Of CRUD Form -->
+
+      </div>
+      <!-- End Of CRUD Body area -->
+    </div>
+    <!-- End Of CRUD area -->
+
+
+
+  </div>
+  <!-- End Of Main Card -->
+</div>
+<!-- End Of Main Row ClearFix -->

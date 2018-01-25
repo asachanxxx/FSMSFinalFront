@@ -71,3 +71,13 @@ th.sorting {
 .alert-danger{
    padding: 5px 10px;
 }
+.color-datagrid-back{
+  background-color: rgba(0, 150, 136, 0.19);
+}
+
+#errorDIsplay{
+  border:1px solid #dd083d;
+  color: #dd083d;
+  font-weight: bold;
+  padding-left: 5px;
+}
