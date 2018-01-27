@@ -1,3 +1,160 @@
-<p>
-  rfcards works!
-</p>
+<div class="row clearfix">
+  <div class="card">
+    <div class="header bg-teal">
+      <h2>ALL RfCardMaster</h2>
+      <ul class="header-dropdown m-r--5">
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Add RfCardMaster</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Delete Slected</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">View Full Details</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="body">
+
+
+      <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <div *ngIf="issuccess" class="alert alert-success">
+            <strong>Well done!</strong> {{successmsg}}
+          </div>
+
+          <div *ngIf="iserror" class="alert alert-danger">
+            <strong>Ooops!</strong> {{errormsg}}
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+
+        <!-- Task Info -->
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <div class="card">
+            <div class="body">
+              <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover dashboard-task-infos">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Card Number</th>
+                      <th>Issued By</th>
+                      <th>Issue Date</th>
+                      <th>CardStatus</th>
+
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="holdvar">
+                    <tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
+                      <td>{{item.Id}}</td>
+                      <td>{{item.CardNo}}</td>
+                      <td>{{item.IssuedBy}}</td>
+                      <td>{{item.IssueDate}}</td>
+                      <td>{{item.CardStatus}}</td>
+
+                      <td>
+                        <a class="btn  btn-xs btn-danger waves-effect" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageDelete"
+                          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="top" (confirm)="deleteConfirm(item)"
+                          (cancel)="deleteCancel()" confirmButtonType="danger" cancelButtonType="default" [appendToBody]="true">
+                          X </a>
+                      </td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- #END# Task Info -->
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="card">
+            <div class="body">
+              <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
+                <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+
+
+
+
+                <label for="CardNo">CardNo</label>
+                <div class="form-group" [ngClass]="displayFieldCss('CardNo')">
+                  <div class="form-line">
+                    <input type="text" id="ID_CardNo" formControlName="CardNo" [ngModel]="selectedItem.CardNo" class="form-control" placeholder="CardNo"
+                      [ngClass]="displayFieldCss('CardNo')">
+                  </div>
+                </div>
+                <label for="IssuedBy">IssuedBy</label>
+                <div class="form-group" [ngClass]="displayFieldCss('IssuedBy')">
+                  <div class="form-line">
+                    <input type="number" id="ID_IssuedBy" formControlName="IssuedBy" [ngModel]="selectedItem.IssuedBy" class="form-control" placeholder="IssuedBy"
+                      [ngClass]="displayFieldCss('IssuedBy')">
+                  </div>
+                </div>
+                <label for="IssueDate">IssueDate</label>
+                <div class="form-group" [ngClass]="displayFieldCss('IssueDate')">
+                  <div class="form-line">
+                    <input type="date" id="ID_IssueDate" formControlName="IssueDate" [ngModel]="selectedItem.IssueDate" class="form-control"
+                      placeholder="IssueDate" [ngClass]="displayFieldCss('IssueDate')">
+                  </div>
+                </div>
+               <!--   <label for="CardStatus">CardStatus</label>
+                <div class="form-group" [ngClass]="displayFieldCss('CardStatus')">
+                  <div class="form-line">
+                    <input type="text" id="ID_CardStatus" formControlName="CardStatus" [ngModel]="selectedItem.CardStatus" class="form-control"
+                      placeholder="CardStatus" [ngClass]="displayFieldCss('CardStatus')">
+                  </div>
+                </div> -->
+
+                <div class="form-group" [ngClass]="displayFieldCss('IssueDate')">
+                    <div class="form-line">
+                    <p>
+                        <b>CardStatus</b>
+                    </p>
+                    <!--<select (change)="onSelectCardStatus($event.target.value)" formControlName="CardStatus"
+                     [Value]="selectedItem.CardStatus" 
+                      [ngModel]="selectedItem.CardStatus" class="form-control show-tick" data-live-search="true">
+                        <option value="1">UnOccupied</option>
+                        <option value="2" >Occupied</option>
+                        <option value="3" >Cancel</option>
+                        <option value="3" >Damaged</option>
+                    </select> -->
+                    <select (change)="onSelectCardStatus($event.target.value)" formControlName="CardStatus" [ngModel]="selectedItem.CardStatus">
+                        <option *ngFor="let x of CardTypes" [ngValue]="x.id"> {{x.text}} </option>
+                    </select>
+
+                    </div>
+                </div>
+
+                    <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+                    [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+                    confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
+                    Insert {{ placement }}
+                  </button>
+                  <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+                    [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
+                    confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
+                    Update {{ placement }}
+                  </button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- #END# Browser Usage -->
+</div>

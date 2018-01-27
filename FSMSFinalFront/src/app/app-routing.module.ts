@@ -9,6 +9,7 @@ import { VehiclesComponent } from './masterdata/vehicles/vehicles.component';
 import { RfcardsComponent } from './masterdata/rfcards/rfcards.component';
 import { CompanyComponent } from './masterdata/company/company.component';
 import { FueltypesComponent } from './masterdata/fueltypes/fueltypes.component';
+import { CreditsaleComponent } from './process/creditsale/creditsale.component';
 
 const routes: Routes = [
   {path:'' ,component:HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'vehicle',component:VehiclesComponent},
   {path:'rfcard',component:RfcardsComponent},
   {path:'fueltypes',component:FueltypesComponent},
+  {path:'creditsale',component:CreditsaleComponent},
 ];
 
 @NgModule({

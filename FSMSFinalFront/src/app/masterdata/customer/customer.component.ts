@@ -80,6 +80,7 @@ export class CustomerComponent implements OnInit {
       pageLength: 10,
     };
     this.myform = this.formBuilder.group({
+      Id: [null],
       CustomerCode: ["", Validators.required],
       CustomerTitle: [""],
       CustomerName: ["", Validators.required],
@@ -105,6 +106,7 @@ export class CustomerComponent implements OnInit {
       ModifiedUser: [""],
       ModifiedDate: [""],
       DataTransfer: [""],
+      TPno:[""]
 
     });
     this.Filter();
@@ -170,12 +172,21 @@ export class CustomerComponent implements OnInit {
     else {
       this.obj.CustomerCode = myform.value.CustomerCode
     }
+
     if (myform.value.CustomerTitle === "" || myform.value.CustomerTitle === null || myform.value.CustomerTitle === undefined) {
       this.obj.CustomerTitle = 1
     }
     else {
       this.obj.CustomerTitle = myform.value.CustomerTitle
     }
+
+    if (myform.value.TPno === "" || myform.value.TPno === null || myform.value.TPno === undefined) {
+      this.obj.TPno = ""
+    }
+    else {
+      this.obj.TPno = myform.value.TPno
+    }
+
     if (myform.value.CustomerName === "" || myform.value.CustomerName === null || myform.value.CustomerName === undefined) {
       this.obj.CustomerName = " - "
     }
@@ -380,7 +391,7 @@ export class CustomerComponent implements OnInit {
   }
 
   Delete(id: number) {
-    this._http.post(this.gloconfig.GetConnection("Customer", "DeleteAsync") + `?id =${id}`, id)
+    this._http.post(`${this.gloconfig.GetConnection("Customer", "DeleteAsync")}?id=${id}`, id)
       .subscribe(
       data => {
         console.log(data)

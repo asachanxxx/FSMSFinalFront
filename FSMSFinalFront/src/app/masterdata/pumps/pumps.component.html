@@ -1,3 +1,347 @@
-<p>
-  pumps works!
-</p>
+<div class="row clearfix" style="display: none;">
+  <div class="card">
+    <div class="header bg-teal">
+      <h2>ALL Pump</h2>
+      <ul class="header-dropdown m-r--5">
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Add Pump</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Delete Slected</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">View Full Details</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="body">
+
+
+      <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <div *ngIf="issuccess" class="alert alert-success">
+            <strong>Well done!</strong> {{successmsg}}
+          </div>
+
+          <div *ngIf="iserror" class="alert alert-danger">
+            <strong>Ooops!</strong> {{errormsg}}
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+
+        <!-- Task Info -->
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <div class="card">
+            <div class="body">
+              <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover dashboard-task-infos">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Pump Name</th>
+                      <th>No of Nozzels</th>
+                      <th>Unit Price</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="holdvar">
+                    <tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
+                      <td>{{item.Id}}</td>
+                      <td>{{item.PumpName}}</td>
+                      <td>{{item.NoofNozzels}}</td>
+                      <td>
+                        {{item.PumpOrderNo}}
+                      </td>
+                      <td>
+                        <a class="btn  btn-xs btn-danger waves-effect" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageDelete"
+                          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="top" (confirm)="deleteConfirm(item)"
+                          (cancel)="deleteCancel()" confirmButtonType="danger" cancelButtonType="default" [appendToBody]="true">
+                          X </a>
+                      </td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- #END# Task Info -->
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="card">
+            <div class="body">
+              <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
+
+                <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+
+
+                <label for="PumpName">PumpName</label>
+                <div class="form-group" [ngClass]="displayFieldCss('PumpName')">
+                  <div class="form-line">
+                    <input type="text" id="ID_PumpName" formControlName="PumpName" [ngModel]="selectedItem.PumpName" class="form-control" placeholder="PumpName"
+                      [ngClass]="displayFieldCss('PumpName')">
+                  </div>
+                  <control-messages [control]="myform.controls.PumpName"></control-messages>
+                </div>
+
+                <label for="PumpOrderNo">PumpOrderNo</label>
+                <div class="form-group" [ngClass]="displayFieldCss('PumpOrderNo')">
+                  <div class="form-line">
+                    <input type="number" id="ID_PumpOrderNo" formControlName="PumpOrderNo" [ngModel]="selectedItem.PumpOrderNo" class="form-control"
+                      placeholder="PumpOrderNo" [ngClass]="displayFieldCss('PumpOrderNo')">
+                  </div>
+                  <control-messages [control]="myform.controls.PumpOrderNo"></control-messages>
+                </div>
+                <label for="NoofNozzels">NoofNozzels</label>
+                <div class="form-group" [ngClass]="displayFieldCss('NoofNozzels')">
+                  <div class="form-line">
+                    <input type="number" id="ID_NoofNozzels" formControlName="NoofNozzels" [ngModel]="selectedItem.NoofNozzels" class="form-control"
+                      placeholder="NoofNozzels" [ngClass]="displayFieldCss('NoofNozzels')">
+                  </div>
+                  <control-messages [control]="myform.controls.NoofNozzels"></control-messages>
+                </div>
+                <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+                  [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+                  confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
+                  Insert {{ placement }}
+                </button>
+                <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+                  [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
+                  confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
+                  Update {{ placement }}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- #END# Main Body -->
+
+  </div>
+  <!-- #END# Browser Usage -->
+</div>
+
+
+
+<div class="row clearfix">
+  <div class="card">
+
+    <div class="header bg-teal">
+      <h2>ALL Pump</h2>
+      <ul class="header-dropdown m-r--5">
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Add Pump</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Delete Slected</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">View Full Details</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="body">
+      <div class="row clearfix">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <div class="row clearfix">
+
+            <!-- ONE CARD /////////////////////////////////////////////////////////////////-->
+            <div style="cursor: pointer;" class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let item of holdvarmodel;  let i = index"
+              (click)="setClickedRow(item,i)">
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    {{item.PumpName}}
+                  </h2>
+                </div>
+                <div class="body">
+
+                  <div class="row clearfix" *ngFor="let item2 of item.Nozzels;  let i2 = index" (click)="setClickedNozzel(item2,item,i)">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="item2;else othercontent">
+                      <div class="info-box-3  hover-zoom-effect">
+                        <div class="icon">
+                          <i class="material-icons col-brown">dock</i>
+                        </div>
+                        <div class="content">
+                          <div class="text">{{item2.NozzelName}}</div>
+                          <div class="text">{{item2.UnitPrice}}</div>
+                        </div>
+                        <template #othercontent>
+                          other content here...
+                        </template>
+                        <ng-template #othercontent>
+                          Please friend, login. othercontent
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--    <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <div class="info-box-3  hover-zoom-effect">
+                        <div class="icon">
+                          <i class="material-icons col-deep-orange">dock</i>
+                        </div>
+                        <div class="content">
+                          <div class="text">NoZZel1</div>
+                          <div class="text">Patrol 91</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+
+                </div>
+              </div>
+            </div>
+            <!-- END CARD /////////////////////////////////////////////////////////////////-->
+
+
+          </div>
+        </div>
+        <!--end of Main DIsplay Area -->
+        <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div id="crudcard" class="card">
+                <div class="header" style="padding: 0 20px;">
+                  <h3>Add Pumps</h3>
+                </div>
+                <div class="body">
+                 
+
+                    <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+
+
+                    <label for="PumpName">PumpName</label>
+                    <div class="form-group" [ngClass]="displayFieldCss('PumpName')">
+                      <div class="form-line">
+                        <input type="text" id="ID_PumpName" formControlName="PumpName" [ngModel]="selectedItem.PumpName" class="form-control" placeholder="PumpName"
+                          [ngClass]="displayFieldCss('PumpName')">
+                      </div>
+                      <control-messages [control]="myform.controls.PumpName"></control-messages>
+                    </div>
+
+                    <label for="PumpOrderNo">PumpOrderNo</label>
+                    <div class="form-group" [ngClass]="displayFieldCss('PumpOrderNo')">
+                      <div class="form-line">
+                        <input type="number" id="ID_PumpOrderNo" formControlName="PumpOrderNo" [ngModel]="selectedItem.PumpOrderNo" class="form-control"
+                          placeholder="PumpOrderNo" [ngClass]="displayFieldCss('PumpOrderNo')">
+                      </div>
+                      <control-messages [control]="myform.controls.PumpOrderNo"></control-messages>
+                    </div>
+                    <label for="NoofNozzels">NoofNozzels</label>
+                    <div class="form-group" [ngClass]="displayFieldCss('NoofNozzels')">
+                      <div class="form-line">
+                        <input type="number" id="ID_NoofNozzels" formControlName="NoofNozzels" [ngModel]="selectedItem.NoofNozzels" class="form-control"
+                          placeholder="NoofNozzels" [ngClass]="displayFieldCss('NoofNozzels')">
+                      </div>
+                      <control-messages [control]="myform.controls.NoofNozzels"></control-messages>
+                    </div>
+                    <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+                      [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()"
+                      (cancel)="SaveCancel()" confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')"
+                      [appendToBody]="true">
+                      Insert {{ placement }}
+                    </button>
+                    <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+                      [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()"
+                      (cancel)="UpdateCancel()" confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')"
+                      [appendToBody]="true">
+                      Update {{ placement }}
+                    </button>
+                </div>
+
+              </div>
+            </div> 
+            <!-- End of Pump Crud -->
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+              	<div class="card">
+                    <div class="header" style="padding: 0 20px;">
+                        <h3>Add Nozzels</h3>
+                      </div>
+
+                    <div class="body">
+                      
+                        <input type="text" formControlName="Id" [ngModel]="selectedItemNozzel.Id" style="display:none">
+        
+                          <label for="FuelTypeId">FuelTypeId</label>
+                          <div class="form-group" [ngClass]="displayFieldCss('FuelTypeId')">
+                            <div class="form-line">
+                              <input type="text" id="ID_FuelTypeId" formControlName="FuelTypeId" [ngModel]="selectedItemNozzel.FuelTypeId" class="form-control"
+                                  placeholder="FuelTypeId" [ngClass]="displayFieldCss('FuelTypeId')">
+                            </div>
+                          </div>
+                          <label for="UnitPrice">UnitPrice</label>
+                          <div class="form-group" [ngClass]="displayFieldCss('UnitPrice')">
+                            <div class="form-line">
+                              <input type="text" id="ID_UnitPrice" formControlName="UnitPrice" [ngModel]="selectedItemNozzel.UnitPrice" class="form-control"
+                                  placeholder="UnitPrice" [ngClass]="displayFieldCss('UnitPrice')">
+                            </div>
+                          </div>
+                          <label for="LastTotalizerReading">LastTotalizerReading</label>
+                          <div class="form-group" [ngClass]="displayFieldCss('LastTotalizerReading')">
+                            <div class="form-line">
+                              <input type="text" id="ID_LastTotalizerReading" formControlName="LastTotalizerReading" [ngModel]="selectedItemNozzel.LastTotalizerReading"
+                                  class="form-control" placeholder="LastTotalizerReading" [ngClass]="displayFieldCss('LastTotalizerReading')">
+                            </div>
+                          </div>
+                          <label for="NozzelName">NozzelName</label>
+                          <div class="form-group" [ngClass]="displayFieldCss('NozzelName')">
+                            <div class="form-line">
+                              <input type="text" id="ID_NozzelName" formControlName="NozzelName" [ngModel]="selectedItemNozzel.NozzelName" class="form-control"
+                                  placeholder="NozzelName" [ngClass]="displayFieldCss('NozzelName')">
+                            </div>
+                          </div>
+
+                          <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+                          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirmNozzel()"
+                          (cancel)="SaveCancelNozzel()" confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')"
+                          [appendToBody]="true">
+                          Insert {{ placement }}
+                        </button>
+                        <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+                          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirmNozzel()"
+                          (cancel)="UpdateCancelNozzel()" confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')"
+                          [appendToBody]="true">
+                          Update {{ placement }}
+                        </button>
+                     
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </form>
+        <!--end of CRUD Area -->
+
+      </div>
+    </div>
+    <!-- End of main body -->
+
+  </div>
+</div>

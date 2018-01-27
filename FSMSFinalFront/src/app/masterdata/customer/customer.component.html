@@ -47,20 +47,20 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Company Code</th>
-                      <th>Corparate Name</th>
+                      <th>Customer Code</th>
+                      <th>Customer Name</th>
                       <th>Telephone</th>
-                      <th>Fax</th>
+                      <th>Outstanding</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody *ngIf="holdvar">
                     <tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
                       <td>{{item.Id}}</td>
-                      <td>{{item.CompanyCode}}</td>
-                      <td>{{item.CompanyName}}</td>
-                      <td>{{item.Telephone}}</td>
-                      <td>{{item.FaxNo}}</td>
+                      <td>{{item.CustomerCode}}</td>
+                      <td>{{item.CustomerName}}</td>
+                      <td>{{item.TPno}}</td>
+                      <td>{{item.Outstanding}}</td>
                       <td>
                         <a class="btn  btn-xs btn-danger waves-effect" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageDelete"
                           [confirmText]="confirmText" [cancelText]="cancelText" [placement]="top" (confirm)="deleteConfirm(item)"
@@ -103,6 +103,9 @@
                   <input type="text" id="ID_CustomerCode" formControlName="CustomerCode" [ngModel]="selectedItem.CustomerCode" class="form-control"
                     placeholder="CustomerCode" [ngClass]="displayFieldCss('CustomerCode')">
                 </div>
+                <div>
+                  <control-messages [control]="myform.controls.CustomerCode"></control-messages>
+                </div>
               </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -111,6 +114,9 @@
                 <div class="form-line">
                   <input type="text" id="ID_CustomerName" formControlName="CustomerName" [ngModel]="selectedItem.CustomerName" class="form-control"
                     placeholder="CustomerName" [ngClass]="displayFieldCss('CustomerName')">
+                </div>
+                <div>
+                  <control-messages [control]="myform.controls.CustomerName"></control-messages>
                 </div>
               </div>
             </div>
@@ -143,7 +149,15 @@
               </div>
             </div>
 
-
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label for="TPno">Contact No</label>
+              <div class="form-group" [ngClass]="displayFieldCss('TPno')">
+                <div class="form-line">
+                  <input type="text" id="ID_TPno" formControlName="TPno" [ngModel]="selectedItem.TPno" class="form-control" placeholder="Contact No"
+                    [ngClass]="displayFieldCss('TPno')">
+                </div>
+              </div>
+            </div>
 
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
               <label for="CustomerType">CustomerType</label>
@@ -228,55 +242,83 @@
               </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <label for="IsSuspended">IsSuspended</label>
+              <!-- <label for="IsSuspended">Is Suspended?</label> -->
               <div class="form-group" [ngClass]="displayFieldCss('IsSuspended')">
                 <div class="form-line">
-                  <input type="text" id="ID_IsSuspended" formControlName="IsSuspended" [ngModel]="selectedItem.IsSuspended" class="form-control"
-                    placeholder="IsSuspended" [ngClass]="displayFieldCss('IsSuspended')">
+                  <br>
+                  <input  formControlName="IsSuspended"
+                   type="checkbox" id="IDIsSuspended" class="filled-in" [checked]="selectedItem.IsSuspended"  (change)="selectedItem.IsSuspended = !selectedItem.IsSuspended" />
+                  <label for="basic_checkbox_2">Is Suspended?</label>
+
+                  <input type="checkbox" id="md_checkbox_3" class="chk-col-purple" checked>
+                  <label for="basic_checkbox_2">Is Suspended?</label>
+
                 </div>
               </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <label for="IsBlackListed">IsBlackListed</label>
+              <!-- <label for="IsBlackListed">IsBlackListed</label> -->
               <div class="form-group" [ngClass]="displayFieldCss('IsBlackListed')">
                 <div class="form-line">
-                  <input type="text" id="ID_IsBlackListed" formControlName="IsBlackListed" [ngModel]="selectedItem.IsBlackListed" class="form-control"
-                    placeholder="IsBlackListed" [ngClass]="displayFieldCss('IsBlackListed')">
+                  <!-- <br>
+                  <input [ngModel]="selectedItem.IsBlackListed" formControlName="IsBlackListed" type="checkbox" id="IDIsBlackListed" class="filled-in"
+                  />
+                  <label for="basic_checkbox_2">Is BlackListed?</label> -->
+
+                  <!-- <input type="text" id="ID_IsBlackListed" formControlName="IsBlackListed" [ngModel]="selectedItem.IsBlackListed" class="form-control"
+                    placeholder="IsBlackListed" [ngClass]="displayFieldCss('IsBlackListed')"> -->
                 </div>
               </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <label for="IsCreditAllowed">IsCreditAllowed</label>
+              <!-- <label for="IsCreditAllowed">IsCreditAllowed</label> -->
               <div class="form-group" [ngClass]="displayFieldCss('IsCreditAllowed')">
                 <div class="form-line">
-                  <input type="text" id="ID_IsCreditAllowed" formControlName="IsCreditAllowed" [ngModel]="selectedItem.IsCreditAllowed" class="form-control"
-                    placeholder="IsCreditAllowed" [ngClass]="displayFieldCss('IsCreditAllowed')">
+                  <!-- <input type="text" id="ID_IsCreditAllowed" formControlName="IsCreditAllowed" [ngModel]="selectedItem.IsCreditAllowed" class="form-control"
+                    placeholder="IsCreditAllowed" [ngClass]="displayFieldCss('IsCreditAllowed')"> -->
+
+                  <!-- <br>
+                  <input [ngModel]="selectedItem.IsCreditAllowed" formControlName="IsCreditAllowed" type="checkbox" id="IDIsCreditAllowed"
+                    class="filled-in" />
+                  <label for="basic_checkbox_2">Is CreditAllowed?</label> -->
+
                 </div>
               </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <label for="IsActive">IsActive</label>
+              <!-- <label for="IsActive">IsActive</label> -->
               <div class="form-group" [ngClass]="displayFieldCss('IsActive')">
                 <div class="form-line">
-                  <input type="text" id="ID_IsActive" formControlName="IsActive" [ngModel]="selectedItem.IsActive" class="form-control" placeholder="IsActive"
-                    [ngClass]="displayFieldCss('IsActive')">
+                  <!-- <input type="text" id="ID_IsActive" formControlName="IsActive" [ngModel]="selectedItem.IsActive" class="form-control" placeholder="IsActive"
+                    [ngClass]="displayFieldCss('IsActive')"> -->
+
+                  <!-- <br>
+                  <input [ngModel]="selectedItem.IsActive" formControlName="IsActive" type="checkbox" id="IDIsActive" class="filled-in" />
+                  <label for="basic_checkbox_2">Is Active?</label> -->
+
+                 
+                  
                 </div>
               </div>
             </div>
           </div>
           <!-- End Of CRUD row clearfix -->
-
-          <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
-            [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
-            confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
-            Insert {{ placement }}
-          </button>
-          <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
-            [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
-            confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
-            Update {{ placement }}
-          </button>
-
+          
+          <div class="row clearfix">
+           
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+                [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+                confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
+                Insert {{ placement }}
+              </button>
+              <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+                [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
+                confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
+                Update {{ placement }}
+              </button>
+            </div>
+          </div>
 
         </form>
         <!-- End Of CRUD Form -->
@@ -285,8 +327,6 @@
       <!-- End Of CRUD Body area -->
     </div>
     <!-- End Of CRUD area -->
-
-
 
   </div>
   <!-- End Of Main Card -->

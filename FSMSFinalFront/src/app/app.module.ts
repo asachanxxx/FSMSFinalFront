@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { GlobalConfig } from './service/globalconfig.service';
+import { CreditsaleComponent } from './process/creditsale/creditsale.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { GlobalConfig } from './service/globalconfig.service';
     RfcardsComponent,
     CompanyComponent,
     FueltypesComponent,
-    FieldErrorDisplayComponent
+    FieldErrorDisplayComponent,
+    CreditsaleComponent
     
   ],
   imports: [

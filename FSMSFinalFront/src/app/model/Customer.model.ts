@@ -26,4 +26,5 @@ export class Customer
 			 ModifiedUser:number;
 			 ModifiedDate:Date;
 			 DataTransfer:number;
+			 TPno:string;
 	}
