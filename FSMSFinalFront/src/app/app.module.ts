@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { GlobalConfig } from './service/globalconfig.service';
 import { CreditsaleComponent } from './process/creditsale/creditsale.component';
+import { DailysaleComponent } from './process/dailysale/dailysale.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { CreditsaleComponent } from './process/creditsale/creditsale.component';
     CompanyComponent,
     FueltypesComponent,
     FieldErrorDisplayComponent,
-    CreditsaleComponent
+    CreditsaleComponent,
+    DailysaleComponent
     
   ],
   imports: [

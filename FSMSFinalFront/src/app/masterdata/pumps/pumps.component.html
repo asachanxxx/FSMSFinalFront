@@ -112,12 +112,12 @@
                   <control-messages [control]="myform.controls.NoofNozzels"></control-messages>
                 </div>
                 <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
-                  [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+                  [confirmText]="confirmText" [cancelText]="cancelText" [placement]="left" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
                   confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
                   Insert {{ placement }}
                 </button>
                 <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
-                  [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
+                  [confirmText]="confirmText" [cancelText]="cancelText" [placement]="left" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
                   confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
                   Update {{ placement }}
                 </button>
@@ -282,7 +282,7 @@
 
               	<div class="card">
                     <div class="header" style="padding: 0 20px;">
-                        <h3>Add Nozzels</h3>
+                        <h3>Add Nozzels -<strong>{{selectedItem.PumpName}}</strong></h3>
                       </div>
 
                     <div class="body">

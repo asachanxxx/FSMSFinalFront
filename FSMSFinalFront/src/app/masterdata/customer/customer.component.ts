@@ -51,7 +51,7 @@ export class CustomerComponent implements OnInit {
       this.issuccess = false;
       this.iserror = false;
     }, 5000);
-    this.selectedItem = new Customer();
+   
   }
   showError(message: string) {
     this.errormsg = message
@@ -75,12 +75,13 @@ export class CustomerComponent implements OnInit {
   }
   //************************************************************************** OnInit ***************************************
   ngOnInit() {
+    this.selectedItem = new Customer();
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
     this.myform = this.formBuilder.group({
-      Id: [null],
+      Id: [0],
       CustomerCode: ["", Validators.required],
       CustomerTitle: [""],
       CustomerName: ["", Validators.required],
@@ -111,7 +112,6 @@ export class CustomerComponent implements OnInit {
     });
     this.Filter();
     this.switchData();
-    this.showSuccess("Program Inisialized");
   }
 
   //************************************************************************** ngAfterViewInit ***************************************
@@ -162,6 +162,7 @@ export class CustomerComponent implements OnInit {
   setClickedRow(item: any, i: any) {
     this.selectedRow = i;
     this.selectedItem = item;
+    console.log("this.selectedItem  ", this.selectedItem);
   }
 
   onSubmit(myform, event, btn) {

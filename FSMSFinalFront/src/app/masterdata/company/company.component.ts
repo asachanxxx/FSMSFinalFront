@@ -114,7 +114,6 @@ export class CompanyComponent implements OnInit, AfterViewInit {
     });
     this.Filter();
     this.switchData();
-    this.showSuccess("Program Inisialized");
   }
 
   ngAfterViewInit(): void {

@@ -200,7 +200,7 @@
               <label for="CreditLimit">CreditLimit</label>
               <div class="form-group" [ngClass]="displayFieldCss('CreditLimit')">
                 <div class="form-line">
-                  <input type="text" id="ID_CreditLimit" formControlName="CreditLimit" [ngModel]="selectedItem.CreditLimit" class="form-control"
+                  <input type="number" id="ID_CreditLimit" formControlName="CreditLimit" [ngModel]="selectedItem.CreditLimit" class="form-control"
                     placeholder="CreditLimit" [ngClass]="displayFieldCss('CreditLimit')">
                 </div>
               </div>
@@ -209,7 +209,7 @@
               <label for="ChequeLimit">ChequeLimit</label>
               <div class="form-group" [ngClass]="displayFieldCss('ChequeLimit')">
                 <div class="form-line">
-                  <input type="text" id="ID_ChequeLimit" formControlName="ChequeLimit" [ngModel]="selectedItem.ChequeLimit" class="form-control"
+                  <input type="number" id="ID_ChequeLimit" formControlName="ChequeLimit" [ngModel]="selectedItem.ChequeLimit" class="form-control"
                     placeholder="ChequeLimit" [ngClass]="displayFieldCss('ChequeLimit')">
                 </div>
               </div>
@@ -218,7 +218,7 @@
               <label for="Outstanding">Outstanding</label>
               <div class="form-group" [ngClass]="displayFieldCss('Outstanding')">
                 <div class="form-line">
-                  <input type="text" id="ID_Outstanding" formControlName="Outstanding" [ngModel]="selectedItem.Outstanding" class="form-control"
+                  <input type="number" id="ID_Outstanding" formControlName="Outstanding" [ngModel]="selectedItem.Outstanding" class="form-control"
                     placeholder="Outstanding" [ngClass]="displayFieldCss('Outstanding')">
                 </div>
               </div>
@@ -241,71 +241,30 @@
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <!-- <label for="IsSuspended">Is Suspended?</label> -->
-              <div class="form-group" [ngClass]="displayFieldCss('IsSuspended')">
-                <div class="form-line">
-                  <br>
-                  <input  formControlName="IsSuspended"
-                   type="checkbox" id="IDIsSuspended" class="filled-in" [checked]="selectedItem.IsSuspended"  (change)="selectedItem.IsSuspended = !selectedItem.IsSuspended" />
-                  <label for="basic_checkbox_2">Is Suspended?</label>
-
-                  <input type="checkbox" id="md_checkbox_3" class="chk-col-purple" checked>
-                  <label for="basic_checkbox_2">Is Suspended?</label>
-
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <!-- <label for="IsBlackListed">IsBlackListed</label> -->
-              <div class="form-group" [ngClass]="displayFieldCss('IsBlackListed')">
-                <div class="form-line">
-                  <!-- <br>
-                  <input [ngModel]="selectedItem.IsBlackListed" formControlName="IsBlackListed" type="checkbox" id="IDIsBlackListed" class="filled-in"
-                  />
-                  <label for="basic_checkbox_2">Is BlackListed?</label> -->
-
-                  <!-- <input type="text" id="ID_IsBlackListed" formControlName="IsBlackListed" [ngModel]="selectedItem.IsBlackListed" class="form-control"
-                    placeholder="IsBlackListed" [ngClass]="displayFieldCss('IsBlackListed')"> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <!-- <label for="IsCreditAllowed">IsCreditAllowed</label> -->
-              <div class="form-group" [ngClass]="displayFieldCss('IsCreditAllowed')">
-                <div class="form-line">
-                  <!-- <input type="text" id="ID_IsCreditAllowed" formControlName="IsCreditAllowed" [ngModel]="selectedItem.IsCreditAllowed" class="form-control"
-                    placeholder="IsCreditAllowed" [ngClass]="displayFieldCss('IsCreditAllowed')"> -->
-
-                  <!-- <br>
-                  <input [ngModel]="selectedItem.IsCreditAllowed" formControlName="IsCreditAllowed" type="checkbox" id="IDIsCreditAllowed"
-                    class="filled-in" />
-                  <label for="basic_checkbox_2">Is CreditAllowed?</label> -->
-
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+               
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <!-- <label for="IsActive">IsActive</label> -->
               <div class="form-group" [ngClass]="displayFieldCss('IsActive')">
                 <div class="form-line">
-                  <!-- <input type="text" id="ID_IsActive" formControlName="IsActive" [ngModel]="selectedItem.IsActive" class="form-control" placeholder="IsActive"
-                    [ngClass]="displayFieldCss('IsActive')"> -->
-
-                  <!-- <br>
-                  <input [ngModel]="selectedItem.IsActive" formControlName="IsActive" type="checkbox" id="IDIsActive" class="filled-in" />
-                  <label for="basic_checkbox_2">Is Active?</label> -->
-
-                 
-                  
+            
+                  <div class="demo-checkbox">
+                      <input  formControlName="IsBlackListed"  [(ngModel)]="selectedItem.IsBlackListed" type="checkbox" id="md_checkbox_21" class="filled-in chk-col-red">
+                      <label for="md_checkbox_21">RED</label>
+                      <input formControlName="IsSuspended"  [(ngModel)]="selectedItem.IsSuspended" type="checkbox" id="md_checkbox_22" class="filled-in chk-col-pink" checked="">
+                      <label for="md_checkbox_22">PINK</label>
+                      <input formControlName="IsCreditAllowed"  [(ngModel)]="selectedItem.IsCreditAllowed" type="checkbox" id="md_checkbox_23" class="filled-in chk-col-purple" checked="">
+                      <label for="md_checkbox_23">PURPLE</label>
+                      <input formControlName="IsActive"  [(ngModel)]="selectedItem.IsActive" type="checkbox" id="md_checkbox_24" class="filled-in chk-col-deep-purple" >
+                      <label for="md_checkbox_24">Is Active?</label>
+                    </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- End Of CRUD row clearfix -->
-          
+
           <div class="row clearfix">
-           
+
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
                 [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"

@@ -10,6 +10,7 @@ import { RfcardsComponent } from './masterdata/rfcards/rfcards.component';
 import { CompanyComponent } from './masterdata/company/company.component';
 import { FueltypesComponent } from './masterdata/fueltypes/fueltypes.component';
 import { CreditsaleComponent } from './process/creditsale/creditsale.component';
+import { DailysaleComponent } from './process/dailysale/dailysale.component';
 
 const routes: Routes = [
   {path:'' ,component:HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path:'rfcard',component:RfcardsComponent},
   {path:'fueltypes',component:FueltypesComponent},
   {path:'creditsale',component:CreditsaleComponent},
+  {path:'dailysale',component:DailysaleComponent},
 ];
 
 @NgModule({
