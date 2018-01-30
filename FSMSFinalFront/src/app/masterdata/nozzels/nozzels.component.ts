@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from '../../service/validation.service';
+import { VehiclesComponent } from '../vehicles/vehicles.component';
 
 @Component({
   selector: 'app-nozzels',
@@ -10,6 +11,8 @@ import { ValidationService } from '../../service/validation.service';
 export class NozzelsComponent implements OnInit {
   userForm: any;
   
+  @ViewChild(VehiclesComponent) nc: VehiclesComponent;
+
   constructor(private formBuilder: FormBuilder) {
 
     this.userForm = this.formBuilder.group({
@@ -18,9 +21,10 @@ export class NozzelsComponent implements OnInit {
       'profile': ['']
     });
 
-    console.log(this.userForm);
+    console.log("nc :-" , this.nc);
   }
   ngOnInit() {
+
   }
 
 }
