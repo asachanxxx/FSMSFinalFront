@@ -7,7 +7,7 @@ export class GlobalConfig {
 
    
     
-   private _logedInUserID : number;
+    private _logedInUserID : number;
     public get GetlogedInUserID() : number {
         return this._logedInUserID;
     }

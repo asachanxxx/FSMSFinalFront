@@ -86,8 +86,12 @@ th.sorting {
   margin-bottom: 10px;
 }
 
-.form-group .form-control {
+/* .form-group .form-control {
   color: #009688;
+} */
+
+.form-group .form-line:after{
+  color: #730096;
 }
 
 .popover .popover-title {
