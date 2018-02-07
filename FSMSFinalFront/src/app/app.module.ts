@@ -27,6 +27,7 @@ import { CreditsaleComponent } from './process/creditsale/creditsale.component';
 import { DailysaleComponent } from './process/dailysale/dailysale.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { DailysaleComponent } from './process/dailysale/dailysale.component';
     FueltypesComponent,
     FieldErrorDisplayComponent,
     CreditsaleComponent,
-    DailysaleComponent
+    DailysaleComponent,
+   
     
   ],
   imports: [
