@@ -9,12 +9,15 @@ import { GlobalConfig } from '../../service/globalconfig.service';
 import { HttpHeaders } from '@angular/common/http';
 import { NgNoValidate } from '@angular/forms/src/directives/ng_no_validate_directive';
 import { CreditSale, CreditSaleViewModel } from '../../model/creditsale.model';
+import { Nozzle } from '../../model/Nozzle.model';
 @Component({
   selector: 'app-creditsale',
   templateUrl: './creditsale.component.html',
   styleUrls: ['./creditsale.component.css']
 })
 export class CreditsaleComponent implements OnInit {
+  NozzelFinalObj: Nozzle[];
+  NozzelData: Nozzle[];
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
@@ -79,8 +82,10 @@ export class CreditsaleComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    console.log("ngAfterViewInit", this.holdvar);
+    console.log("ngAfterViewInit", this.dtOptions);
     this.dtTrigger.next();
+    this.GetAllNozzels();
+
   }
   //************************************************************************** tswitchData ***************************************
   switchData(): void {
@@ -90,10 +95,14 @@ export class CreditsaleComponent implements OnInit {
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
         // Destroy the table first
         dtInstance.destroy();
-        console.log("AddItemToGrid",this.filterholder)
-        console.log("holdvar",this.holdvar)
+        dtInstance.clear();
+        // console.log("AddItemToGrid",this.filterholder)
+        // console.log("holdvar",this.holdvar)
+    
         // Switch
+        
         this.holdvar = this.filterholder; //this.data[id];
+        
         // Call the dtTrigger to rerender again
         this.dtTrigger.next();
       });
@@ -119,9 +128,9 @@ export class CreditsaleComponent implements OnInit {
     item.UnitPrice = 117;
     item.Total = item.NoOfUnits * item.UnitPrice
 
-
-    this.filterholder.push(item);
     this.switchData()
+    this.filterholder.push(item);
+    
     // console.log("AddItemToGrid",this.filterholder)
     // console.log("holdvar",this.holdvar)
   }
@@ -131,10 +140,31 @@ export class CreditsaleComponent implements OnInit {
     const index: number = this.filterholder.indexOf(item);
     if (index !== -1) {
       this.filterholder.splice(index, 1);
+      console.log("ON Delete  ", this.filterholder);
+      this.switchData()
     }
   }
 
   setClickedRow(item, i) {
     //console.log(item);
   }
+
+  GetAllNozzels() {
+    let hed: HttpHeaders = new HttpHeaders();
+    this._http.get<Nozzle[]>(this.gloconfig.GetConnection("Nozzle", "GetAll"))
+      .subscribe(
+      data => {
+        this.NozzelData = data;
+        console.log("Filter2", data)
+      },
+      err => {
+        console.log(err)
+      },
+      () => {
+        this.NozzelFinalObj = this.NozzelData;
+        //this.switchData();
+
+      });
+  }
+
 }

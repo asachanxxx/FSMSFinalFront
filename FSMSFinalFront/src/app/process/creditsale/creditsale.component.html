@@ -40,6 +40,7 @@
               </div>
             </div>
             
+
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
               <p>
                 <b>Nozzel</b>
@@ -52,35 +53,23 @@
                   </span>
                 </button>
                 <div class="dropdown-menu open">
-                  <ul class="dropdown-menu inner" role="menu">
-                    <li data-original-index="0">
+                  <ul class="dropdown-menu inner" role="menu" *ngIf="NozzelFinalObj"  >
+                    <li data-original-index="0" *ngFor="let item of NozzelFinalObj" >
                       <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Mustard</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                    <li data-original-index="1">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Ketchup</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                    <li data-original-index="2">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Relish</span>
+                        <span class="text">{{item.NozzelName}}</span>
                         <span class="glyphicon glyphicon-ok check-mark"></span>
                       </a>
                     </li>
                   </ul>
                 </div>
-                <select class="form-control show-tick" multiple="" tabindex="-98">
-                  <option>Mustard</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
+                <select class="form-control show-tick" multiple="" tabindex="-98" *ngIf="NozzelFinalObj" >
+                  <option  *ngFor="let item of NozzelFinalObj">{{item.NozzelName}}</option>
                 </select>
               </div>
-
             </div>
+
+
+
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
               <p>
                 <b>Pumper</b>
@@ -276,8 +265,8 @@
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody *ngIf="filterholder">
-                    <tr *ngFor="let item of filterholder;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
+                  <tbody *ngIf="holdvar">
+                    <tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
                       <td>{{item.Id}}</td>
                       <td>{{item.Fueltype}}</td>
                       <td>{{item.RfIDCode}}</td>
