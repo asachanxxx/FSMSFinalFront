@@ -1,0 +1,22 @@
+export class Employee
+	{
+			 Id:number;
+			 EmployeeCode:string;
+			 EmployeeName:string;
+			 Telephone:string;
+			 Mobile:string;
+			 IsActive:boolean;
+			 CreditLimit:number;
+			 CashInHand:number;
+			 LocationID:number;
+			 GroupOfCompanyID:number;
+			 CreatedUser:number;
+			 CreatedDate:Date;
+			 ModifiedUser:number;
+			 ModifiedDate:Date;
+			 DataTransfer:number;
+			 CompanyId:number;
+			 Passcode:string;
+			 BasicMonthlySalary:number;
+			 HorlyRate:number;
+	}

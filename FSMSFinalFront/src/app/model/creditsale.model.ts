@@ -4,7 +4,9 @@ export class CreditSale {
 	ShiftId: number;
 	EmployeeId: number;
 	CustomerID: number;
+	Customer: string;
 	VehicleID: number;
+	Vehicle: string;
 	RfID: number;
 	RfIDCode: string;
 	RecordDate: Date;
@@ -19,6 +21,9 @@ export class CreditSale {
 	ModifiedDate: Date;
 	DataTransfer: number;
 	NozzelId: number;
+	FuelTypeId:number;
+	Fueltype:string;
+	Details:Array<CreditSale>;
 }
 
 export class CreditSaleViewModel {

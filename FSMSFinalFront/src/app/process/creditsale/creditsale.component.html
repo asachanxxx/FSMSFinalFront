@@ -34,216 +34,114 @@
                 </p>
                 <div class="form-line">
 
-                  <input type="text" class="form-control">
-                  <label class="form-label">Document No</label>
+                  <input [(ngModel)] = "DocNo" name = "DocNo" type="text" class="form-control">
+                  <label  class="form-label">Document No</label>
                 </div>
               </div>
             </div>
-            
-
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-              <p>
-                <b>Nozzel</b>
-              </p>
-              <div class="btn-group bootstrap-select show-tick form-control">
-                <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Nothing selected">
-                  <span class="filter-option pull-left">Nothing selected</span>&nbsp;
-                  <span class="bs-caret">
-                    <span class="caret"></span>
-                  </span>
-                </button>
-                <div class="dropdown-menu open">
-                  <ul class="dropdown-menu inner" role="menu" *ngIf="NozzelFinalObj"  >
-                    <li data-original-index="0" *ngFor="let item of NozzelFinalObj" >
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">{{item.NozzelName}}</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <select class="form-control show-tick" multiple="" tabindex="-98" *ngIf="NozzelFinalObj" >
-                  <option  *ngFor="let item of NozzelFinalObj">{{item.NozzelName}}</option>
+                <p>
+                    <b>Nozzel</b>
+                </p>
+                <select #t (change)="OnChangeNozzel($event)" [(ngModel)] = "salex.NozzelId" *ngIf="NozzelFinalObj"  class="form-control show-tick">
+                    <option>---Nozzel---</option>
+                    <option  [attr.data-index]="i" *ngFor="let item of NozzelFinalObj" [value]="item.Id">{{item.NozzelName}}</option>
                 </select>
-              </div>
+
             </div>
-
-
-
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-              <p>
-                <b>Pumper</b>
-              </p>
-              <div class="btn-group bootstrap-select show-tick form-control">
-                <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Nothing selected">
-                  <span class="filter-option pull-left">Nothing selected</span>&nbsp;
-                  <span class="bs-caret">
-                    <span class="caret"></span>
-                  </span>
-                </button>
-                <div class="dropdown-menu open">
-                  <ul class="dropdown-menu inner" role="menu">
-                    <li data-original-index="0">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Mustard</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                    <li data-original-index="1">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Ketchup</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                    <li data-original-index="2">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Relish</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <select class="form-control show-tick" multiple="" tabindex="-98">
-                  <option>Mustard</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
+                <p>
+                    <b>Pumper</b>
+                </p>
+                <select #t  (change)="OnChangePumper($event)"   [(ngModel)] = "salex.EmployeeId"    *ngIf="EmployeeObj"  class="form-control show-tick">
+                    <option>---Pumper---</option>
+                    <option [attr.data-index]="i" *ngFor="let item of EmployeeObj" [value]="item.Id">{{item.EmployeeName}}</option>
                 </select>
-              </div>
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <p>
+                    <b>Customer</b>
+                </p>
+                <select #t  (change)="OnChangeCustomer($event)" [(ngModel)] = "salex.CustomerID" *ngIf="CustomerFinalObj"  class="form-control show-tick">
+                    <option>---Customer---</option>
+                    <option [attr.data-index]="i" *ngFor="let item of CustomerFinalObj" [value]="item.Id">{{item.CustomerName}}</option>
+                </select>
 
             </div>
 
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-              <p>
-                <b>Customer</b>
-              </p>
-              <div class="btn-group bootstrap-select show-tick form-control">
-                <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Nothing selected">
-                  <span class="filter-option pull-left">Nothing selected</span>&nbsp;
-                  <span class="bs-caret">
-                    <span class="caret"></span>
-                  </span>
-                </button>
-                <div class="dropdown-menu open">
-                  <ul class="dropdown-menu inner" role="menu">
-                    <li data-original-index="0">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Mustard</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                    <li data-original-index="1">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Ketchup</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                    <li data-original-index="2">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Relish</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <select class="form-control show-tick" multiple="" tabindex="-98">
-                  <option>Mustard</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <p>
+                    <b>Vehicles</b>
+                </p>
+                <select #t  (change)="OnChangeVehicle($event)" [(ngModel)] = "salex.VehicleID" *ngIf="VehicleFinalObj"  class="form-control show-tick">
+                    <option>---Nozzel---</option>
+                    <option [attr.data-index]="i" *ngFor="let item of VehicleFinalObj" [value]="item.Id">{{item.VehicleName}}</option>
                 </select>
-              </div>
 
             </div>
 
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-              <p>
-                <b>Vehicle </b>
-              </p>
-              <div class="btn-group bootstrap-select show-tick form-control">
-                <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Nothing selected">
-                  <span class="filter-option pull-left">Nothing selected</span>&nbsp;
-                  <span class="bs-caret">
-                    <span class="caret"></span>
-                  </span>
-                </button>
-                <div class="dropdown-menu open">
-                  <ul class="dropdown-menu inner" role="menu">
-                    <li data-original-index="0">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Mustard</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                    <li data-original-index="1">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Ketchup</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                    <li data-original-index="2">
-                      <a tabindex="0" class="" style="" data-tokens="null">
-                        <span class="text">Relish</span>
-                        <span class="glyphicon glyphicon-ok check-mark"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <select class="form-control show-tick" multiple="" tabindex="-98">
-                  <option>Mustard</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
-                </select>
-              </div>
 
-            </div>
+
 
 
           </div>
-
-
         </div>
       </div>
 
 
       <div class="row clearfix">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="row clearfix">
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                      <div class="form-group form-float">
-                        <div class="form-line">
-        
-                          <input disabled=true type="text" class="form-control">
-                          <label class="form-label">Unit Price</label>
-                        </div>
-                      </div>
-                    </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="row clearfix">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+              <div class="form-group form-float">
+                <!-- <div class="form-line">
+                   
+                        <b>Unit Price</b>
+                   
+                  <input readonly type="text" [(ngModel)]='FuelPrice' class="form-control">
+                  
+                </div> -->
 
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                    <div class="form-group form-float">
-                      <div class="form-line">
-      
-                        <input type="text" class="form-control">
-                        <label class="form-label">No Of Units</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                      <div class="form-group form-float">
-                        <div class="form-line">
-        
-                          <input disabled=true type="text" class="form-control">
-                          <label class="form-label">Total</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg3">
-          
-                        <button  class="btn btn-primary" (click)="AddItemToGrid(myform,$event,'Insert')" >
-                        Insert {{ placement }}
-                      </button>
-                    </div>
+                <div class="form-line focused success">
+                    <input readonly [(ngModel)]='FuelPrice' type="text" class="form-control" name="success" value="0" required="">
+                    <label class="form-label">Unit Price</label>
+                </div>
 
               </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+              <div class="form-group form-float">
+                <div class="form-line">
+
+                  <input [(ngModel)]='NoOfUnits'(keypress)="noofunitKeyPRess($event)" type="number" class="form-control">
+                  <label class="form-label">No Of Units</label>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+              <div class="form-group form-float">
+
+                <div class="form-line focused success">
+                    <input [(ngModel)]='Total' type="text" class="form-control" name="success" value="Success" required="">
+                    <label class="form-label">Total</label>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg3">
+
+              <button class="btn btn-primary" (click)="AddItemToGrid(myform,$event,'Insert')">
+                Insert {{ placement }}
+              </button>
+            </div>
+
           </div>
+        </div>
       </div>
       <!-- End Of Sale Header -->
 
@@ -256,8 +154,8 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Fuel Type</th>
-                      <th>RF Card NO</th>
+                      <th>Customer</th>
+                      <th>Vehicle</th>
                       <th>No Of Units</th>
                       <th>Unit Price</th>
                       <th>Total</th>
@@ -268,8 +166,8 @@
                   <tbody *ngIf="holdvar">
                     <tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
                       <td>{{item.Id}}</td>
-                      <td>{{item.Fueltype}}</td>
-                      <td>{{item.RfIDCode}}</td>
+                      <td>{{item.Customer}}</td>
+                      <td>{{item.Vehicle}}</td>
                       <td>{{item.NoOfUnits}}</td>
                       <td>{{item.UnitPrice}}</td>
                       <td>{{item.Total}}</td>
@@ -292,13 +190,13 @@
 
       <div class="row clearfix">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          
-            <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+
+          <button  class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
             [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
             confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
             Insert {{ placement }}
           </button>
-          <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+          <button  class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
             [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()" (cancel)="UpdateCancel()"
             confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')" [appendToBody]="true">
             Update {{ placement }}
@@ -307,10 +205,10 @@
 
 
           <button class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
-          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="PrintConfirm()" (cancel)="PrintCancel()"
-          confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Print')" [appendToBody]="true">
-          Print {{ placement }}
-        </button>
+            [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="PrintConfirm()" (cancel)="PrintCancel()"
+            confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Print')" [appendToBody]="true">
+            Print {{ placement }}
+          </button>
 
         </div>
       </div>
