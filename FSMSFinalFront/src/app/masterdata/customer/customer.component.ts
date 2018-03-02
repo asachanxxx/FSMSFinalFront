@@ -147,6 +147,7 @@ export class CustomerComponent implements OnInit {
   //************************************************************************** tswitchData ***************************************
   switchData(): void {
     //in first call on OnInit this.dtElement.dtInstance is not construct and check it for undefinned
+    console.log("switchData ",this.dtElement)
     if (this.dtElement.dtInstance !== undefined) {
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
         // Destroy the table first

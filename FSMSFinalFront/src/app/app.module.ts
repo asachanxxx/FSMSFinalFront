@@ -25,6 +25,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { GlobalConfig } from './service/globalconfig.service';
 import { CreditsaleComponent } from './process/creditsale/creditsale.component';
 import { DailysaleComponent } from './process/dailysale/dailysale.component';
+import { CustomerpaymentComponent } from './process/customerpayment/customerpayment.component';
 
 
 
@@ -46,6 +47,7 @@ import { DailysaleComponent } from './process/dailysale/dailysale.component';
     FieldErrorDisplayComponent,
     CreditsaleComponent,
     DailysaleComponent,
+    CustomerpaymentComponent,
    
     
   ],

@@ -3,10 +3,6 @@ export class DailySalesHed
          Id:number;
          DocNo:string;
          SalesSummaryId:number;
-         PumpId:number;
-         NozzelId:number;
-         ShiftId:number;
-         EmployeeId:number;
          TotalLiters:number;
          TestingLiters:number;
          TotalSaleAmt:number;
@@ -18,4 +14,7 @@ export class DailySalesHed
          ModifiedUser:number;
          ModifiedDate:Date;
          DataTransfer:number;
+         SaleType:number;
 }
+
+   

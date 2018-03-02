@@ -83,13 +83,13 @@
             <div class="body">
               <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
 
-                <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+                <input type="text" formControlName="Id" [(ngModel)]="selectedItem.Id" style="display:none">
 
 
                 <label for="PumpName">PumpName</label>
                 <div class="form-group" [ngClass]="displayFieldCss('PumpName')">
                   <div class="form-line">
-                    <input type="text" id="ID_PumpName" formControlName="PumpName" [ngModel]="selectedItem.PumpName" class="form-control" placeholder="PumpName"
+                    <input type="text" id="ID_PumpName" formControlName="PumpName" [(ngModel)]="selectedItem.PumpName" class="form-control" placeholder="PumpName"
                       [ngClass]="displayFieldCss('PumpName')">
                   </div>
                   <control-messages [control]="myform.controls.PumpName"></control-messages>
@@ -98,7 +98,7 @@
                 <label for="PumpOrderNo">PumpOrderNo</label>
                 <div class="form-group" [ngClass]="displayFieldCss('PumpOrderNo')">
                   <div class="form-line">
-                    <input type="number" id="ID_PumpOrderNo" formControlName="PumpOrderNo" [ngModel]="selectedItem.PumpOrderNo" class="form-control"
+                    <input type="number" id="ID_PumpOrderNo" formControlName="PumpOrderNo" [(ngModel)]="selectedItem.PumpOrderNo" class="form-control"
                       placeholder="PumpOrderNo" [ngClass]="displayFieldCss('PumpOrderNo')">
                   </div>
                   <control-messages [control]="myform.controls.PumpOrderNo"></control-messages>
@@ -106,7 +106,7 @@
                 <label for="NoofNozzels">NoofNozzels</label>
                 <div class="form-group" [ngClass]="displayFieldCss('NoofNozzels')">
                   <div class="form-line">
-                    <input type="number" id="ID_NoofNozzels" formControlName="NoofNozzels" [ngModel]="selectedItem.NoofNozzels" class="form-control"
+                    <input type="number" id="ID_NoofNozzels" formControlName="NoofNozzels" [(ngModel)]="selectedItem.NoofNozzels" class="form-control"
                       placeholder="NoofNozzels" [ngClass]="displayFieldCss('NoofNozzels')">
                   </div>
                   <control-messages [control]="myform.controls.NoofNozzels"></control-messages>
@@ -221,15 +221,15 @@
         </div>
         <!--end of Main DIsplay Area -->
         <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div id="crudcard" class="card">
-                <div class="header" style="padding: 0 20px;">
-                  <h3>Add Pumps</h3>
-                </div>
-                <div class="body">
-                 
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div id="crudcard" class="card">
+                  <div class="header" style="padding: 0 20px;">
+                    <h3>Add Pumps</h3>
+                  </div>
+                  <div class="body">
+
 
                     <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
 
@@ -271,72 +271,88 @@
                       [appendToBody]="true">
                       Update {{ placement }}
                     </button>
-                </div>
-
-              </div>
-            </div> 
-            <!-- End of Pump Crud -->
-
-
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-              	<div class="card">
-                    <div class="header" style="padding: 0 20px;">
-                        <h3>Add Nozzels -<strong>{{selectedItem.PumpName}}</strong></h3>
-                      </div>
-
-                    <div class="body">
-                      
-                        <input type="text" formControlName="Id" [ngModel]="selectedItemNozzel.Id" style="display:none">
-        
-                          <label for="FuelTypeId">FuelTypeId</label>
-                          <div class="form-group" [ngClass]="displayFieldCss('FuelTypeId')">
-                            <div class="form-line">
-                              <input type="text" id="ID_FuelTypeId" formControlName="FuelTypeId" [ngModel]="selectedItemNozzel.FuelTypeId" class="form-control"
-                                  placeholder="FuelTypeId" [ngClass]="displayFieldCss('FuelTypeId')">
-                            </div>
-                          </div>
-                          <label for="UnitPrice">UnitPrice</label>
-                          <div class="form-group" [ngClass]="displayFieldCss('UnitPrice')">
-                            <div class="form-line">
-                              <input type="text" id="ID_UnitPrice" formControlName="UnitPrice" [ngModel]="selectedItemNozzel.UnitPrice" class="form-control"
-                                  placeholder="UnitPrice" [ngClass]="displayFieldCss('UnitPrice')">
-                            </div>
-                          </div>
-                          <label for="LastTotalizerReading">LastTotalizerReading</label>
-                          <div class="form-group" [ngClass]="displayFieldCss('LastTotalizerReading')">
-                            <div class="form-line">
-                              <input type="text" id="ID_LastTotalizerReading" formControlName="LastTotalizerReading" [ngModel]="selectedItemNozzel.LastTotalizerReading"
-                                  class="form-control" placeholder="LastTotalizerReading" [ngClass]="displayFieldCss('LastTotalizerReading')">
-                            </div>
-                          </div>
-                          <label for="NozzelName">NozzelName</label>
-                          <div class="form-group" [ngClass]="displayFieldCss('NozzelName')">
-                            <div class="form-line">
-                              <input type="text" id="ID_NozzelName" formControlName="NozzelName" [ngModel]="selectedItemNozzel.NozzelName" class="form-control"
-                                  placeholder="NozzelName" [ngClass]="displayFieldCss('NozzelName')">
-                            </div>
-                          </div>
-
-                          <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
-                          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirmNozzel()"
-                          (cancel)="SaveCancelNozzel()" confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')"
-                          [appendToBody]="true">
-                          Insert {{ placement }}
-                        </button>
-                        <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
-                          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirmNozzel()"
-                          (cancel)="UpdateCancelNozzel()" confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')"
-                          [appendToBody]="true">
-                          Update {{ placement }}
-                        </button>
-                     
-                    </div>
                   </div>
+
+                </div>
+              </div>
+              <!-- End of Pump Crud -->
+
+
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div class="card">
+                  <div class="header" style="padding: 0 20px;">
+                    <h3>Add Nozzels -
+                      <strong>{{selectedItem.PumpName}}</strong>
+                    </h3>
+                  </div>
+
+                  <div class="body">
+
+                    <input type="text" formControlName="Id" [ngModel]="selectedItemNozzel.Id" style="display:none">
+
+                    <!-- <label for="FuelTypeId">FuelTypeId</label> -->
+                    <div class="form-group" [ngClass]="displayFieldCss('FuelTypeId')" style="display: hidden">
+                      <div class="form-line">
+                        <input type="text" id="ID_FuelTypeId" formControlName="FuelTypeId" [ngModel]="selectedItemNozzel.FuelTypeId" class="form-control"
+                          placeholder="FuelTypeId" [ngClass]="displayFieldCss('FuelTypeId')">
+                      </div>
+                    </div>
+
+                    <label for="UnitPrice">UnitPrice</label>
+                    <div class="form-group" [ngClass]="displayFieldCss('UnitPrice')">
+                      <div class="form-line">
+                        <input type="number" id="ID_UnitPrice" formControlName="UnitPrice" [(ngModel)]="selectedItemNozzel.UnitPrice" class="form-control"
+                          placeholder="UnitPrice" [ngClass]="displayFieldCss('UnitPrice')">
+                      </div>
+                    </div>
+                    <label for="LastTotalizerReading">LastTotalizerReading</label>
+                    <div class="form-group" [ngClass]="displayFieldCss('LastTotalizerReading')">
+                      <div class="form-line">
+                        <input type="number" id="ID_LastTotalizerReading" formControlName="LastTotalizerReading" [(ngModel)]="selectedItemNozzel.LastTotalizerReading"
+                          class="form-control" placeholder="LastTotalizerReading" [ngClass]="displayFieldCss('LastTotalizerReading')">
+                      </div>
+                    </div>
+                    <p>
+                      <b>Fuel Type</b>
+                    </p>
+                    <div class="form-group" [ngClass]="displayFieldCss('PumpOrderNo')">
+                      <div class="form-line">
+
+                        <select formControlName="FuelTypeId" #t (change)="OnChangePumper($event)" [(ngModel)]="selectedItemNozzel.FuelTypeId" *ngIf="selectedItem" class="form-control show-tick">
+                          <option>---Fuel Type---</option>
+                          <option [attr.data-index]="i" *ngFor="let item of FuelTypeData" [value]="item.Id">{{item.FuelFullName}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <label for="NozzelName">NozzelName</label>
+                    <div class="form-group" [ngClass]="displayFieldCss('NozzelName')">
+                      <div class="form-line">
+                        <input type="text" id="ID_NozzelName" formControlName="NozzelName" [(ngModel)]="selectedItemNozzel.NozzelName" class="form-control"
+                          placeholder="NozzelName" [ngClass]="displayFieldCss('NozzelName')">
+                      </div>
+                    </div>
+
+                    <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+                      [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirmNozzel()"
+                      (cancel)="SaveCancelNozzel()" confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')"
+                      [appendToBody]="true">
+                      Insert {{ placement }}
+                    </button>
+                    <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+                      [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirmNozzel()"
+                      (cancel)="UpdateCancelNozzel()" confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')"
+                      [appendToBody]="true">
+                      Update {{ placement }}
+                    </button>
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
         <!--end of CRUD Area -->
 
       </div>

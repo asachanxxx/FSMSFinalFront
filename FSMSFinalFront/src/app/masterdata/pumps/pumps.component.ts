@@ -9,6 +9,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { GlobalConfig } from '../../service/globalconfig.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Nozzle } from '../../model/Nozzle.model';
+import { FuelType } from '../../model/fuelType.model';
 
 @Component({
   selector: 'app-pumps',
@@ -16,7 +17,9 @@ import { Nozzle } from '../../model/Nozzle.model';
   styleUrls: ['./pumps.component.css']
 })
 export class PumpsComponent implements OnInit {
-  selectedItemNozzel: any;
+  FueltypeFinalObj: FuelType[];
+  FuelTypeData: FuelType[];
+  selectedItemNozzel: Nozzle;
   selectedRowNozzel: any;
   myformNozzel: FormGroup;
   @ViewChild(DataTableDirective)
@@ -112,6 +115,7 @@ export class PumpsComponent implements OnInit {
     // });
   
     //this.Filter();
+    this. GetAllCustomers();
     this.switchData();
     this.showSuccess("Program Inisialized");
     this.Filter2();
@@ -332,5 +336,62 @@ export class PumpsComponent implements OnInit {
       this.selectedRowNozzel = i;
       this.selectedItemNozzel = item2;
   }
+
+  SaveConfirmNozzel(){
+    console.log(this.selectedItemNozzel);
+    console.log(this.selectedItem);
+    this.selectedItemNozzel.CreatedUser = this.gloconfig.GetlogedInUserID;
+    //this.selectedItemNozzel.FuelTypeId = 1;
+    this.selectedItemNozzel.PumpId = this.selectedItem.Id;
+    this.selectedItemNozzel.GroupOfCompanyID = 1;
+
+    this.SaveNozzel(this.selectedItemNozzel);
+
+    
+  }
+
+
+  SaveNozzel(item: Nozzle) {
+    console.log("Save Confirmed! Nozzels !  ", this.selectedItemNozzel);
+    this._http.post(this.gloconfig.GetConnection("Nozzle", "SaveAsync"), item)
+      .subscribe(
+      data => {
+        console.log(data)
+        this.showSuccess("Record Inserted SuccessFully!");
+      },
+      err => {
+        this.showError("Some Error occured while transaction! Record not Inserted!");
+      },
+      () => {
+        console.log("Finish")
+        //this.Filter();
+        this.Filter2();
+        this.switchData();
+      })
+  }
+
+  GetAllCustomers() {
+    let hed: HttpHeaders = new HttpHeaders();
+    this._http.get<FuelType[]>(this.gloconfig.GetConnection("FuelTypesDapper", "GetAll"))
+      .subscribe(
+        data => {
+          this.FuelTypeData = data;
+          console.log("FuelTypesDapper  ", data)
+        },
+        err => {
+          console.log(err)
+        },
+        () => {
+          this.FueltypeFinalObj = this.FuelTypeData;
+          //this.switchData();
+
+        });
+  }
+
+  OnChangePumper(){
+    
+  }
+
+
 
 }//end of class

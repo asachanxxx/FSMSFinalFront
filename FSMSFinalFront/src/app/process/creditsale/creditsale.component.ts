@@ -122,26 +122,26 @@ export class CreditsaleComponent implements OnInit {
     // this.salex.VehicleID =1;
     console.log(this.salex);
 
-    if (this.salex.Details.length > 0) {
-      let hed: HttpHeaders = new HttpHeaders();
-      this._http.post(this.gloconfig.GetConnection("CreditSale", "SaveAsync"), this.salex)
-        .subscribe(
-        data => {
-          console.log("Filter2", this.FuelPrice)
-        },
-        err => {
-          console.log(err)
-        },
-        () => {
-          //this.VehicleFinalObj = this.VehicleData;
-          //this.switchData();
-          window.alert("Record Saved!");
-          this.clear()
+      if (this.salex.Details.length > 0) {
+        let hed: HttpHeaders = new HttpHeaders();
+        this._http.post(this.gloconfig.GetConnection("CreditSale", "ProcessCreditSale"), this.filterholder)
+          .subscribe(
+            data => {
+              console.log("Filter2", this.FuelPrice)
+            },
+            err => {
+              console.log(err)
+            },
+            () => {
+              //this.VehicleFinalObj = this.VehicleData;
+              //this.switchData();
+              window.alert("Record Saved!");
+              this.clear()
 
-        });
-    } else {
-      window.alert("Please add some item to save");
-    }
+            });
+      } else {
+        window.alert("Please add some item to save");
+      }
   }
 
   clear() {
@@ -299,70 +299,70 @@ export class CreditsaleComponent implements OnInit {
     let hed: HttpHeaders = new HttpHeaders();
     this._http.get<Nozzle[]>(this.gloconfig.GetConnection("Nozzle", "GetAll"))
       .subscribe(
-      data => {
-        this.NozzelData = data;
-        console.log("GetAllNozzels ", data)
-      },
-      err => {
-        console.log(err)
-      },
-      () => {
-        this.NozzelFinalObj = this.NozzelData;
-        //this.switchData();
+        data => {
+          this.NozzelData = data;
+          console.log("GetAllNozzels ", data)
+        },
+        err => {
+          console.log(err)
+        },
+        () => {
+          this.NozzelFinalObj = this.NozzelData;
+          //this.switchData();
 
-      });
+        });
   }
 
   GetAllCustomers() {
     let hed: HttpHeaders = new HttpHeaders();
     this._http.get<Customer[]>(this.gloconfig.GetConnection("Customer", "GetAll"))
       .subscribe(
-      data => {
-        this.CustomerData = data;
-        console.log("GetAllCustomers ", data)
-      },
-      err => {
-        console.log(err)
-      },
-      () => {
-        this.CustomerFinalObj = this.CustomerData;
-        //this.switchData();
+        data => {
+          this.CustomerData = data;
+          console.log("GetAllCustomers ", data)
+        },
+        err => {
+          console.log(err)
+        },
+        () => {
+          this.CustomerFinalObj = this.CustomerData;
+          //this.switchData();
 
-      });
+        });
   }
 
   GetAllVehicles() {
     let hed: HttpHeaders = new HttpHeaders();
     this._http.get<Vehicle[]>(this.gloconfig.GetConnection("Vehicle", "GetAll"))
       .subscribe(
-      data => {
-        this.VehicleData = data;
-        console.log("GetAllVehicles ", data)
-      },
-      err => {
-        console.log(err)
-      },
-      () => {
-        this.VehicleFinalObj = this.VehicleData;
-        //this.switchData();
+        data => {
+          this.VehicleData = data;
+          console.log("GetAllVehicles ", data)
+        },
+        err => {
+          console.log(err)
+        },
+        () => {
+          this.VehicleFinalObj = this.VehicleData;
+          //this.switchData();
 
-      });
+        });
   }
 
   GetAllPumpers() {
     let hed: HttpHeaders = new HttpHeaders();
     this._http.get<Employee[]>(this.gloconfig.GetConnection("Employee", "GetAll"))
       .subscribe(
-      data => {
-        this.EmployeeData = data;
-        console.log("GetAllPumpers", data)
-      },
-      err => {
-        console.log(err)
-      },
-      () => {
-        this.EmployeeObj = this.EmployeeData;
-      });
+        data => {
+          this.EmployeeData = data;
+          console.log("GetAllPumpers", data)
+        },
+        err => {
+          console.log(err)
+        },
+        () => {
+          this.EmployeeObj = this.EmployeeData;
+        });
   }
 
 
@@ -370,33 +370,33 @@ export class CreditsaleComponent implements OnInit {
     let hed: HttpHeaders = new HttpHeaders();
     this._http.get<number>(`${this.gloconfig.GetConnection("Nozzle", "GetFuelPrice")}?Nozzelid=${id}`)
       .subscribe(
-      data => {
-        this.FuelPrice = data;
-        console.log("GetFuelPRice", this.FuelPrice)
-      },
-      err => {
-        console.log(err)
-      },
-      () => {
-        //this.VehicleFinalObj = this.VehicleData;
-        //this.switchData();
-      });
+        data => {
+          this.FuelPrice = data;
+          console.log("GetFuelPRice", this.FuelPrice)
+        },
+        err => {
+          console.log(err)
+        },
+        () => {
+          //this.VehicleFinalObj = this.VehicleData;
+          //this.switchData();
+        });
   }
   GetDocNo(id: number) {
     let hed: HttpHeaders = new HttpHeaders();
     this._http.get<string>(`${this.gloconfig.GetConnection("Helper", "GetDocumentNumber")}?docno=${id}`)
       .subscribe(
-      data => {
-        this.DocNo = data;
-        console.log("GetDocNo ", this.DocNo)
-      },
-      err => {
-        console.log(err)
-      },
-      () => {
-        //this.VehicleFinalObj = this.VehicleData;
-        //this.switchData();
-      });
+        data => {
+          this.DocNo = data;
+          console.log("GetDocNo ", this.DocNo)
+        },
+        err => {
+          console.log(err)
+        },
+        () => {
+          //this.VehicleFinalObj = this.VehicleData;
+          //this.switchData();
+        });
   }
 
 
