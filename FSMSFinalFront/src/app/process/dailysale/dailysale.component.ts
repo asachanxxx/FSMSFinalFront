@@ -13,6 +13,8 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 })
 export class DailysaleComponent implements OnInit ,AfterViewInit{
 
+  selectedItem: DailySalesHed;
+  selectedRow: any;
   filterholder: DailySalesHed[] =  new Array<DailySalesHed>();
   holdvar: DailySalesHed[] = [];
   @ViewChild(DataTableDirective)
@@ -68,6 +70,14 @@ export class DailysaleComponent implements OnInit ,AfterViewInit{
     //this.GetAllNozzels();
   }
 
+
+  setClickedRow(item: DailySalesHed, i: any) {
+		this.selectedRow = i;
+    this.selectedItem = item;
+    
+    console.log(this.selectedItem);
+  }
+  
   //************************************************************************** tswitchData ***************************************
   switchData(): void {
     this.holdvar = new Array<DailySalesHed>();

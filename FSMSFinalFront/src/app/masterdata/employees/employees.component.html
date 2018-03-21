@@ -1,0 +1,233 @@
+<div class="row clearfix">
+  <div class="card">
+    <div class="header bg-teal">
+      <h2>ALL Employee</h2>
+      <ul class="header-dropdown m-r--5">
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Add Employee</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">Delete Slected</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class=" waves-effect waves-block">View Full Details</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="body">
+
+
+      <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div *ngIf="issuccess" class="alert alert-success">
+            <strong>Well done!</strong> {{successmsg}}
+          </div>
+
+          <div *ngIf="iserror" class="alert alert-danger">
+            <strong>Ooops!</strong> {{errormsg}}
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <!-- Task Info -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="card">
+            <div class="body">
+              <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover dashboard-task-infos">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Employee Code</th>
+                      <th>Employee Name</th>
+                      <th>PassCode</th>
+                      <th>Mobile</th>
+                      <th>Basic Salary</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="holdvar">
+                    <tr *ngFor="let item of holdvar;  let i = index" (click)="setClickedRow(item,i)" [class.active]="i == selectedRow">
+                      <td>{{item.Id}}</td>
+                      <td>{{item.EmployeeCode}}</td>
+                      <td>{{item.EmployeeName}}</td>
+                      <td>{{item.Passcode}}</td>
+                      <td>{{item.Mobile}}</td>
+                      <td>{{item.BasicMonthlySalary}}</td>
+
+                      <td>
+                        <a class="btn  btn-xs btn-danger waves-effect" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageDelete"
+                          [confirmText]="confirmText" [cancelText]="cancelText" [placement]="top" (confirm)="deleteConfirm(item)"
+                          (cancel)="deleteCancel()" confirmButtonType="danger" cancelButtonType="default" [appendToBody]="true">
+                          X </a>
+                      </td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="body">
+          <form id="form_advanced_validation" [formGroup]="myform" (onSubmit)="onSubmit(myform,$event,'Insert')">
+            <input type="text" formControlName="Id" [ngModel]="selectedItem.Id" style="display:none">
+
+            <div class="row clearfix">
+
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="EmployeeCode">EmployeeCode</label>
+                <div class="form-group" [ngClass]="displayFieldCss('EmployeeCode')">
+                  <div class="form-line">
+                    <input type="text" id="ID_EmployeeCode" formControlName="EmployeeCode" [ngModel]="selectedItem.EmployeeCode" class="form-control"
+                      placeholder="EmployeeCode" [ngClass]="displayFieldCss('EmployeeCode')">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="EmployeeName">EmployeeName</label>
+                <div class="form-group" [ngClass]="displayFieldCss('EmployeeName')">
+                  <div class="form-line">
+                    <input type="text" id="ID_EmployeeName" formControlName="EmployeeName" [ngModel]="selectedItem.EmployeeName" class="form-control"
+                      placeholder="EmployeeName" [ngClass]="displayFieldCss('EmployeeName')">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="Telephone">Telephone</label>
+                <div class="form-group" [ngClass]="displayFieldCss('Telephone')">
+                  <div class="form-line">
+                    <input type="text" id="ID_Telephone" formControlName="Telephone" [ngModel]="selectedItem.Telephone" class="form-control"
+                      placeholder="Telephone" [ngClass]="displayFieldCss('Telephone')">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="Mobile">Mobile</label>
+                <div class="form-group" [ngClass]="displayFieldCss('Mobile')">
+                  <div class="form-line">
+                    <input type="text" id="ID_Mobile" formControlName="Mobile" [ngModel]="selectedItem.Mobile" class="form-control" placeholder="Mobile"
+                      [ngClass]="displayFieldCss('Mobile')">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row clearfix">
+
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="IsActive">IsActive</label>
+                <div class="form-group" [ngClass]="displayFieldCss('IsActive')">
+                  <div class="form-line">
+                    <input type="text" id="ID_IsActive" formControlName="IsActive" [ngModel]="selectedItem.IsActive" class="form-control" placeholder="IsActive"
+                      [ngClass]="displayFieldCss('IsActive')">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="CreditLimit">CreditLimit</label>
+                <div class="form-group" [ngClass]="displayFieldCss('CreditLimit')">
+                  <div class="form-line">
+                    <input type="text" id="ID_CreditLimit" formControlName="CreditLimit" [ngModel]="selectedItem.CreditLimit" class="form-control"
+                      placeholder="CreditLimit" [ngClass]="displayFieldCss('CreditLimit')">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="CashInHand">CashInHand</label>
+                <div class="form-group" [ngClass]="displayFieldCss('CashInHand')">
+                  <div class="form-line">
+                    <input type="text" id="ID_CashInHand" formControlName="CashInHand" [ngModel]="selectedItem.CashInHand" class="form-control"
+                      placeholder="CashInHand" [ngClass]="displayFieldCss('CashInHand')">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="LocationID">LocationID</label>
+                <div class="form-group" [ngClass]="displayFieldCss('LocationID')">
+                  <div class="form-line">
+                    <input type="text" id="ID_LocationID" formControlName="LocationID" [ngModel]="selectedItem.LocationID" class="form-control"
+                      placeholder="LocationID" [ngClass]="displayFieldCss('LocationID')">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="row clearfix">
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="Passcode">Passcode</label>
+                <div class="form-group" [ngClass]="displayFieldCss('Passcode')">
+                  <div class="form-line">
+                    <input type="text" id="ID_Passcode" formControlName="Passcode" [ngModel]="selectedItem.Passcode" class="form-control" placeholder="Passcode"
+                      [ngClass]="displayFieldCss('Passcode')">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="BasicMonthlySalary">BasicMonthlySalary</label>
+                <div class="form-group" [ngClass]="displayFieldCss('BasicMonthlySalary')">
+                  <div class="form-line">
+                    <input type="text" id="ID_BasicMonthlySalary" formControlName="BasicMonthlySalary" [ngModel]="selectedItem.BasicMonthlySalary"
+                      class="form-control" placeholder="BasicMonthlySalary" [ngClass]="displayFieldCss('BasicMonthlySalary')">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <label for="HorlyRate">HorlyRate</label>
+                <div class="form-group" [ngClass]="displayFieldCss('HorlyRate')">
+                  <div class="form-line">
+                    <input type="text" id="ID_HorlyRate" formControlName="HorlyRate" [ngModel]="selectedItem.HorlyRate" class="form-control"
+                      placeholder="HorlyRate" [ngClass]="displayFieldCss('HorlyRate')">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="row clearfix">
+
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                  <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+                    [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+                    confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
+                    Insert {{ placement }}
+                  </button>
+                  <button [disabled]="!myform.valid" class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+                    [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="UpdateConfirm()"
+                    (cancel)="UpdateCancel()" confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Update')"
+                    [appendToBody]="true">
+                    Update {{ placement }}
+                  </button>
+                </div>
+              </div>
+
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+  <!-- #END# Browser Usage -->
+</div>

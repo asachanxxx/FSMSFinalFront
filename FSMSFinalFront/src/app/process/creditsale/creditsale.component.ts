@@ -291,8 +291,8 @@ export class CreditsaleComponent implements OnInit {
     }
   }
 
-  setClickedRow(item, i) {
-    //console.log(item);
+  setClickedRow(item:any, i:any) {
+    console.log(item);
   }
 
   GetAllNozzels() {

@@ -67,7 +67,7 @@
                   <i class="material-icons">date_range</i>
                 </span>
                 <div class="form-line">
-                  <input type="date" class="form-control date" [(ngModel)] = "datefrom" placeholder="Ex: 30/07/2016">
+                  <input type="date" class="form-control date" [(ngModel)]="datefrom" placeholder="Ex: 30/07/2016">
                 </div>
               </div>
             </div>
@@ -79,17 +79,17 @@
                   <i class="material-icons">date_range</i>
                 </span>
                 <div class="form-line">
-                  <input type="date" [(ngModel)] = "dateTo" class="form-control date" placeholder="Ex: 30/07/2016">
+                  <input type="date" [(ngModel)]="dateTo" class="form-control date" placeholder="Ex: 30/07/2016">
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-              <button  class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
-              [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
-              confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
-              Search {{ placement }}
-            </button>
+              <button class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageSave"
+                [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="SaveConfirm()" (cancel)="SaveCancel()"
+                confirmButtonType="info" cancelButtonType="default" (click)="onSubmit(myform,$event,'Insert')" [appendToBody]="true">
+                Search {{ placement }}
+              </button>
             </div>
 
 
@@ -148,17 +148,26 @@
           </div>
         </div>
       </div>
-   
+
       <div class="row clearfix">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
-              [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="PrintConfirm()" (cancel)="PrintCancel()"
-              confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Print')" [appendToBody]="true">
-              Print {{ placement }}
-            </button>
-          </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          
         </div>
-  
+      </div>
+
+
+
+      <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <button class="btn btn-primary" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessageUpdate"
+            [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom" (confirm)="PrintConfirm()" (cancel)="PrintCancel()"
+            confirmButtonType="warning" cancelButtonType="default" (click)="onSubmit(myform,$event,'Print')" [appendToBody]="true">
+            Print {{ placement }}
+          </button>
+        </div>
+      </div>
+
 
 
     </div>
